@@ -89,6 +89,10 @@ public abstract class DOMSignatureMethod extends AbstractDOMSignatureMethod {
         "http://www.w3.org/2007/05/xmldsig-more#sha512-rsa-MGF1";
     static final String RSA_RIPEMD160_MGF1 =
         "http://www.w3.org/2007/05/xmldsig-more#ripemd160-rsa-MGF1";
+    
+    // ECDSA_SM3
+    static final String ECDSA_SM3 =
+            "http://www.w3.org/2018/02/xmlgmdsig#ecdsa-sm3";
 
     /**
      * Creates a <code>DOMSignatureMethod</code>.
@@ -182,7 +186,11 @@ public abstract class DOMSignatureMethod extends AbstractDOMSignatureMethod {
             return new DOMHMACSignatureMethod.SHA512(smElem);
         } else if (alg.equals(DOMHMACSignatureMethod.HMAC_RIPEMD160)) {
             return new DOMHMACSignatureMethod.RIPEMD160(smElem);
-        } else {
+        } else if (alg.equals(DOMHMACSignatureMethod.HMAC_SM3)) { //HMAC-SM3
+            return new DOMHMACSignatureMethod.SM3(smElem);
+        } else if (alg.equals(ECDSA_SM3)) { //ECDSA-SM3
+            return new SM3withECDSA(smElem);
+        }else {
             throw new MarshalException
                 ("unsupported SignatureMethod algorithm: " + alg);
         }
@@ -724,4 +732,25 @@ public abstract class DOMSignatureMethod extends AbstractDOMSignatureMethod {
         }
     }
 
+    static final class SM3withECDSA extends DOMSignatureMethod {
+    	SM3withECDSA(AlgorithmParameterSpec params)
+            throws InvalidAlgorithmParameterException {
+            super(params);
+        }
+    	SM3withECDSA(Element dmElem) throws MarshalException {
+            super(dmElem);
+        }
+        @Override
+        public String getAlgorithm() {
+            return ECDSA_SM3;
+        }
+        @Override
+        String getJCAAlgorithm() {
+            return "SM3withECDSA";
+        }
+        @Override
+        Type getAlgorithmType() {
+            return Type.ECDSA;
+        }
+    }
 }
