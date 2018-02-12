@@ -34,8 +34,11 @@ import java.security.InvalidKeyException;
 import java.security.Key;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
+import java.security.ProviderException;
 import java.security.SignatureException;
 import java.security.spec.AlgorithmParameterSpec;
+
 import javax.crypto.Mac;
 import javax.crypto.SecretKey;
 import org.w3c.dom.Element;
@@ -62,6 +65,11 @@ public abstract class DOMHMACSignatureMethod extends AbstractDOMSignatureMethod 
         "http://www.w3.org/2001/04/xmldsig-more#hmac-sha512";
     static final String HMAC_RIPEMD160 =
         "http://www.w3.org/2001/04/xmldsig-more#hmac-ripemd160";
+    
+    static final String HMAC_SM3 =
+            "http://www.w3.org/2018/02/xmlgmdsig#hmac-sm3";
+    // change provider
+    static final String BC = "BC";
 
     private Mac hmac;
     private int outputLength;
@@ -148,9 +156,11 @@ public abstract class DOMHMACSignatureMethod extends AbstractDOMSignatureMethod 
         }
         if (hmac == null) {
             try {
-                hmac = Mac.getInstance(getJCAAlgorithm());
+					hmac = Mac.getInstance(getJCAAlgorithm(),BC);
             } catch (NoSuchAlgorithmException nsae) {
                 throw new XMLSignatureException(nsae);
+            } catch (NoSuchProviderException e) {
+            	throw new ProviderException(e);
             }
         }
         if (outputLengthSet && outputLength < getDigestLength()) {
@@ -176,10 +186,12 @@ public abstract class DOMHMACSignatureMethod extends AbstractDOMSignatureMethod 
         }
         if (hmac == null) {
             try {
-                hmac = Mac.getInstance(getJCAAlgorithm());
+                hmac = Mac.getInstance(getJCAAlgorithm(),BC);
             } catch (NoSuchAlgorithmException nsae) {
                 throw new XMLSignatureException(nsae);
-            }
+            } catch (NoSuchProviderException e) {
+            	throw new ProviderException(e);
+			}
         }
         if (outputLengthSet && outputLength < getDigestLength()) {
             throw new XMLSignatureException
@@ -342,6 +354,28 @@ public abstract class DOMHMACSignatureMethod extends AbstractDOMSignatureMethod 
         @Override
         int getDigestLength() {
             return 160;
+        }
+    }
+    
+    static final class SM3 extends DOMHMACSignatureMethod {
+    	SM3(AlgorithmParameterSpec params)
+            throws InvalidAlgorithmParameterException {
+            super(params);
+        }
+    	SM3(Element dmElem) throws MarshalException {
+            super(dmElem);
+        }
+        @Override
+        public String getAlgorithm() {
+            return HMAC_SM3;
+        }
+        @Override
+        String getJCAAlgorithm() {
+            return "HMACSM3";
+        }
+        @Override
+        int getDigestLength() {
+            return 256;
         }
     }
 }
