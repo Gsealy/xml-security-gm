@@ -1,0 +1,152 @@
+2018-02-11 15:27:05,518 [main] WARN  org.apache.xml.security.signature.Reference - Verification failed for URI "#object-1"
+2018-02-11 15:27:05,519 [main] WARN  org.apache.xml.security.signature.Reference - Expected Digest: zyjp8GJOX69990Kkqw8ioPXGExk=
+2018-02-11 15:27:05,519 [main] WARN  org.apache.xml.security.signature.Reference - Actual Digest: n0weqDMBqFVjVT1H8+9WNGTH6JY=
+2018-02-11 15:27:05,543 [main] WARN  org.apache.xml.security.signature.Reference - Verification failed for URI "#object-2"
+2018-02-11 15:27:05,543 [main] WARN  org.apache.xml.security.signature.Reference - Expected Digest: zyjp8GJOX69990Kkqw8ioPXGExk=
+2018-02-11 15:27:05,543 [main] WARN  org.apache.xml.security.signature.Reference - Actual Digest: wxuuzFCOyqyYic/blQ9P8U4hKrQ=
+2018-02-11 15:27:05,546 [main] WARN  org.apache.xml.security.signature.Reference - Verification failed for URI "#xpointer(id('object-3'))"
+2018-02-11 15:27:05,546 [main] WARN  org.apache.xml.security.signature.Reference - Expected Digest: 1puYWb36Z5TIDmEIVd/JLR3iD8Y=
+2018-02-11 15:27:05,546 [main] WARN  org.apache.xml.security.signature.Reference - Actual Digest: becndHHt3eD2yAgIWKccFY/bFac=
+2018-02-11 15:27:10,003 [main] WARN  org.apache.xml.security.signature.Reference - Verification failed for URI "test.txt"
+2018-02-11 15:27:10,003 [main] WARN  org.apache.xml.security.signature.Reference - Expected Digest: tYpuWTmktpzSwRM8cxRlZfY4aw4wqr4vkXKPs9lwxP4=
+2018-02-11 15:27:10,003 [main] WARN  org.apache.xml.security.signature.Reference - Actual Digest: BjVs1oFu54LZwQuUA+kHgZApH0pIc8PGOoo0YrLrNUI=
+2018-02-11 15:27:21,097 [main] WARN  org.apache.xml.security.stax.impl.processor.input.XMLEncryptedKeyInputHandler - Unwrapping of the encrypted key failed with error: Unwrapping failed. Generating a faked one to mitigate timing attacks.
+2018-02-11 15:27:30,741 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @57093ms to org.eclipse.jetty.util.log.Slf4jLog
+2018-02-11 15:27:31,048 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.4.8.v20171121, build timestamp: 2017-11-22T05:27:37+08:00, git hash: 82b8fb23f757335bb3329d540ce37a2a2615f0a8
+2018-02-11 15:27:31,205 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@3b4d9b77{/,null,AVAILABLE}
+2018-02-11 15:27:31,374 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@cb5840f{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:31,375 [main] INFO  org.eclipse.jetty.server.Server - Started @57728ms
+2018-02-11 15:27:31,972 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@cb5840f{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:31,974 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@3b4d9b77{/,null,UNAVAILABLE}
+2018-02-11 15:27:31,989 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.4.8.v20171121, build timestamp: 2017-11-22T05:27:37+08:00, git hash: 82b8fb23f757335bb3329d540ce37a2a2615f0a8
+2018-02-11 15:27:31,990 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@6796beb2{/,null,AVAILABLE}
+2018-02-11 15:27:31,994 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@34e40e50{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:31,994 [main] INFO  org.eclipse.jetty.server.Server - Started @58348ms
+2018-02-11 15:27:32,084 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@34e40e50{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:32,084 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@6796beb2{/,null,UNAVAILABLE}
+2018-02-11 15:27:32,097 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.4.8.v20171121, build timestamp: 2017-11-22T05:27:37+08:00, git hash: 82b8fb23f757335bb3329d540ce37a2a2615f0a8
+2018-02-11 15:27:32,105 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@1d27436e{/,null,AVAILABLE}
+2018-02-11 15:27:32,109 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@58b1f6b6{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:32,110 [main] INFO  org.eclipse.jetty.server.Server - Started @58463ms
+2018-02-11 15:27:32,722 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@58b1f6b6{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:32,725 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@1d27436e{/,null,UNAVAILABLE}
+2018-02-11 15:27:32,835 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.4.8.v20171121, build timestamp: 2017-11-22T05:27:37+08:00, git hash: 82b8fb23f757335bb3329d540ce37a2a2615f0a8
+2018-02-11 15:27:32,836 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@50cf54e4{/,null,AVAILABLE}
+2018-02-11 15:27:32,840 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@74c7bc5c{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:32,840 [main] INFO  org.eclipse.jetty.server.Server - Started @59194ms
+2018-02-11 15:27:33,223 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@74c7bc5c{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:33,223 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@50cf54e4{/,null,UNAVAILABLE}
+2018-02-11 15:27:33,553 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.4.8.v20171121, build timestamp: 2017-11-22T05:27:37+08:00, git hash: 82b8fb23f757335bb3329d540ce37a2a2615f0a8
+2018-02-11 15:27:33,554 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@265d560b{/,null,AVAILABLE}
+2018-02-11 15:27:33,556 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@5fbe35d6{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:33,556 [main] INFO  org.eclipse.jetty.server.Server - Started @59910ms
+2018-02-11 15:27:33,725 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@5fbe35d6{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:33,726 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@265d560b{/,null,UNAVAILABLE}
+2018-02-11 15:27:33,824 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.4.8.v20171121, build timestamp: 2017-11-22T05:27:37+08:00, git hash: 82b8fb23f757335bb3329d540ce37a2a2615f0a8
+2018-02-11 15:27:33,825 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@3b5d8fb7{/,null,AVAILABLE}
+2018-02-11 15:27:33,828 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@2c974286{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:33,828 [main] INFO  org.eclipse.jetty.server.Server - Started @60182ms
+2018-02-11 15:27:33,919 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@2c974286{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:33,919 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@3b5d8fb7{/,null,UNAVAILABLE}
+2018-02-11 15:27:33,925 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.4.8.v20171121, build timestamp: 2017-11-22T05:27:37+08:00, git hash: 82b8fb23f757335bb3329d540ce37a2a2615f0a8
+2018-02-11 15:27:33,926 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@bc54966{/,null,AVAILABLE}
+2018-02-11 15:27:33,929 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@76efa553{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:33,929 [main] INFO  org.eclipse.jetty.server.Server - Started @60283ms
+2018-02-11 15:27:33,947 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@76efa553{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:33,947 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@bc54966{/,null,UNAVAILABLE}
+2018-02-11 15:27:34,031 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.4.8.v20171121, build timestamp: 2017-11-22T05:27:37+08:00, git hash: 82b8fb23f757335bb3329d540ce37a2a2615f0a8
+2018-02-11 15:27:34,032 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@4904144d{/,null,AVAILABLE}
+2018-02-11 15:27:34,034 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@4947843e{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:34,035 [main] INFO  org.eclipse.jetty.server.Server - Started @60389ms
+2018-02-11 15:27:34,072 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@4947843e{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:34,072 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@4904144d{/,null,UNAVAILABLE}
+2018-02-11 15:27:34,083 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.4.8.v20171121, build timestamp: 2017-11-22T05:27:37+08:00, git hash: 82b8fb23f757335bb3329d540ce37a2a2615f0a8
+2018-02-11 15:27:34,084 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@6a68159e{/,null,AVAILABLE}
+2018-02-11 15:27:34,086 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@1bd3906e{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:34,086 [main] INFO  org.eclipse.jetty.server.Server - Started @60440ms
+2018-02-11 15:27:34,111 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@1bd3906e{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:34,111 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@6a68159e{/,null,UNAVAILABLE}
+2018-02-11 15:27:34,118 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.4.8.v20171121, build timestamp: 2017-11-22T05:27:37+08:00, git hash: 82b8fb23f757335bb3329d540ce37a2a2615f0a8
+2018-02-11 15:27:34,119 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@64790f7f{/,null,AVAILABLE}
+2018-02-11 15:27:34,121 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@3725b63{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:34,121 [main] INFO  org.eclipse.jetty.server.Server - Started @60475ms
+2018-02-11 15:27:34,146 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@3725b63{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:34,146 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@64790f7f{/,null,UNAVAILABLE}
+2018-02-11 15:27:34,156 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.4.8.v20171121, build timestamp: 2017-11-22T05:27:37+08:00, git hash: 82b8fb23f757335bb3329d540ce37a2a2615f0a8
+2018-02-11 15:27:34,157 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@cbcec62{/,null,AVAILABLE}
+2018-02-11 15:27:34,159 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@733c2020{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:34,159 [main] INFO  org.eclipse.jetty.server.Server - Started @60513ms
+2018-02-11 15:27:34,175 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@733c2020{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:34,175 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@cbcec62{/,null,UNAVAILABLE}
+2018-02-11 15:27:34,229 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.4.8.v20171121, build timestamp: 2017-11-22T05:27:37+08:00, git hash: 82b8fb23f757335bb3329d540ce37a2a2615f0a8
+2018-02-11 15:27:34,233 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@5e588217{/,null,AVAILABLE}
+2018-02-11 15:27:34,237 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@14239522{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:34,237 [main] INFO  org.eclipse.jetty.server.Server - Started @60591ms
+2018-02-11 15:27:34,265 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@14239522{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:34,266 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@5e588217{/,null,UNAVAILABLE}
+2018-02-11 15:27:34,293 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.4.8.v20171121, build timestamp: 2017-11-22T05:27:37+08:00, git hash: 82b8fb23f757335bb3329d540ce37a2a2615f0a8
+2018-02-11 15:27:34,294 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@71d3da3a{/,null,AVAILABLE}
+2018-02-11 15:27:34,297 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@6829b0e6{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:34,297 [main] INFO  org.eclipse.jetty.server.Server - Started @60650ms
+2018-02-11 15:27:34,347 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@6829b0e6{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:34,347 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@71d3da3a{/,null,UNAVAILABLE}
+2018-02-11 15:27:34,353 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.4.8.v20171121, build timestamp: 2017-11-22T05:27:37+08:00, git hash: 82b8fb23f757335bb3329d540ce37a2a2615f0a8
+2018-02-11 15:27:34,354 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@714fc0ad{/,null,AVAILABLE}
+2018-02-11 15:27:34,356 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@4b5ec80a{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:34,356 [main] INFO  org.eclipse.jetty.server.Server - Started @60710ms
+2018-02-11 15:27:34,370 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@4b5ec80a{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:34,370 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@714fc0ad{/,null,UNAVAILABLE}
+2018-02-11 15:27:34,385 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.4.8.v20171121, build timestamp: 2017-11-22T05:27:37+08:00, git hash: 82b8fb23f757335bb3329d540ce37a2a2615f0a8
+2018-02-11 15:27:34,386 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@26a3f0ab{/,null,AVAILABLE}
+2018-02-11 15:27:34,388 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@1f99469b{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:34,388 [main] INFO  org.eclipse.jetty.server.Server - Started @60742ms
+2018-02-11 15:27:34,436 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@1f99469b{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:34,437 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@26a3f0ab{/,null,UNAVAILABLE}
+2018-02-11 15:27:34,515 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.4.8.v20171121, build timestamp: 2017-11-22T05:27:37+08:00, git hash: 82b8fb23f757335bb3329d540ce37a2a2615f0a8
+2018-02-11 15:27:34,516 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@3cd68940{/,null,AVAILABLE}
+2018-02-11 15:27:34,525 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@140d12c0{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:34,525 [main] INFO  org.eclipse.jetty.server.Server - Started @60879ms
+2018-02-11 15:27:34,592 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@140d12c0{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:34,592 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@3cd68940{/,null,UNAVAILABLE}
+2018-02-11 15:27:34,610 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.4.8.v20171121, build timestamp: 2017-11-22T05:27:37+08:00, git hash: 82b8fb23f757335bb3329d540ce37a2a2615f0a8
+2018-02-11 15:27:34,611 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@feda3c8{/,null,AVAILABLE}
+2018-02-11 15:27:34,615 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@2ccc9797{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:34,615 [main] INFO  org.eclipse.jetty.server.Server - Started @60969ms
+2018-02-11 15:27:34,686 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@2ccc9797{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:34,686 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@feda3c8{/,null,UNAVAILABLE}
+2018-02-11 15:27:34,733 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.4.8.v20171121, build timestamp: 2017-11-22T05:27:37+08:00, git hash: 82b8fb23f757335bb3329d540ce37a2a2615f0a8
+2018-02-11 15:27:34,737 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@65c5d00a{/,null,AVAILABLE}
+2018-02-11 15:27:34,744 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@48f345c{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:34,744 [main] INFO  org.eclipse.jetty.server.Server - Started @61098ms
+2018-02-11 15:27:34,776 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@48f345c{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:34,776 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@65c5d00a{/,null,UNAVAILABLE}
+2018-02-11 15:27:34,844 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.4.8.v20171121, build timestamp: 2017-11-22T05:27:37+08:00, git hash: 82b8fb23f757335bb3329d540ce37a2a2615f0a8
+2018-02-11 15:27:34,845 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@69b109c3{/,null,AVAILABLE}
+2018-02-11 15:27:34,849 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@7c8cca4f{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:34,849 [main] INFO  org.eclipse.jetty.server.Server - Started @61203ms
+2018-02-11 15:27:34,945 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@7c8cca4f{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:34,946 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@69b109c3{/,null,UNAVAILABLE}
+2018-02-11 15:27:34,973 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.4.8.v20171121, build timestamp: 2017-11-22T05:27:37+08:00, git hash: 82b8fb23f757335bb3329d540ce37a2a2615f0a8
+2018-02-11 15:27:34,974 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@740c49f7{/,null,AVAILABLE}
+2018-02-11 15:27:34,976 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@72429d50{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:34,976 [main] INFO  org.eclipse.jetty.server.Server - Started @61330ms
+2018-02-11 15:27:35,055 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@72429d50{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:35,056 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@740c49f7{/,null,UNAVAILABLE}
+2018-02-11 15:27:35,062 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.4.8.v20171121, build timestamp: 2017-11-22T05:27:37+08:00, git hash: 82b8fb23f757335bb3329d540ce37a2a2615f0a8
+2018-02-11 15:27:35,062 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@415f2c7e{/,null,AVAILABLE}
+2018-02-11 15:27:35,064 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@13c336ed{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:35,065 [main] INFO  org.eclipse.jetty.server.Server - Started @61418ms
+2018-02-11 15:27:35,087 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@13c336ed{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:35,087 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@415f2c7e{/,null,UNAVAILABLE}
+2018-02-11 15:27:38,673 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.4.8.v20171121, build timestamp: 2017-11-22T05:27:37+08:00, git hash: 82b8fb23f757335bb3329d540ce37a2a2615f0a8
+2018-02-11 15:27:38,675 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@63b3463e{/,null,AVAILABLE}
+2018-02-11 15:27:38,685 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@3a1575f8{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:38,685 [main] INFO  org.eclipse.jetty.server.Server - Started @65039ms
+2018-02-11 15:27:38,708 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@3a1575f8{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:38,708 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@63b3463e{/,null,UNAVAILABLE}
+2018-02-11 15:27:41,619 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.4.8.v20171121, build timestamp: 2017-11-22T05:27:37+08:00, git hash: 82b8fb23f757335bb3329d540ce37a2a2615f0a8
+2018-02-11 15:27:41,620 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@2efa352c{/,null,AVAILABLE}
+2018-02-11 15:27:41,623 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@4938a200{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:41,623 [main] INFO  org.eclipse.jetty.server.Server - Started @67977ms
+2018-02-11 15:27:41,663 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@4938a200{HTTP/1.1,[http/1.1]}{0.0.0.0:31280}
+2018-02-11 15:27:41,663 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@2efa352c{/,null,UNAVAILABLE}
