@@ -35,6 +35,7 @@ import java.security.spec.AlgorithmParameterSpec;
 import org.w3c.dom.Element;
 
 import org.apache.xml.security.algorithms.implementations.SignatureECDSA;
+import org.apache.xml.security.algorithms.implementations.SignatureECSM2;
 import org.apache.xml.security.utils.JavaUtils;
 import org.apache.jcp.xml.dsig.internal.SignerOutputStream;
 
@@ -91,8 +92,8 @@ public abstract class DOMSignatureMethod extends AbstractDOMSignatureMethod {
         "http://www.w3.org/2007/05/xmldsig-more#ripemd160-rsa-MGF1";
     
     // ECDSA_SM3
-    static final String ECDSA_SM3 =
-            "http://www.w3.org/2018/02/xmlgmdsig#ecdsa-sm3";
+    static final String ECSM2_SM3 =
+            "http://www.w3.org/2018/02/xmlgmdsig#ecsm2-sm3";
 
     /**
      * Creates a <code>DOMSignatureMethod</code>.
@@ -188,8 +189,8 @@ public abstract class DOMSignatureMethod extends AbstractDOMSignatureMethod {
             return new DOMHMACSignatureMethod.RIPEMD160(smElem);
         } else if (alg.equals(DOMHMACSignatureMethod.HMAC_SM3)) { //HMAC-SM3
             return new DOMHMACSignatureMethod.SM3(smElem);
-        } else if (alg.equals(ECDSA_SM3)) { //ECDSA-SM3
-            return new SM3withECDSA(smElem);
+        } else if (alg.equals(ECSM2_SM3)) { //ECDSA-SM3
+            return new SM3withECSM2(smElem);
         }else {
             throw new MarshalException
                 ("unsupported SignatureMethod algorithm: " + alg);
@@ -240,6 +241,8 @@ public abstract class DOMSignatureMethod extends AbstractDOMSignatureMethod {
                                                                        size/8));
             } else if (type == Type.ECDSA) {
                 return signature.verify(SignatureECDSA.convertXMLDSIGtoASN1(sig));
+            } else if (type == Type.ECSM2) {
+                return signature.verify(SignatureECSM2.convertXMLDSIGtoASN1(sig));
             } else {
                 return signature.verify(sig);
             }
@@ -285,6 +288,8 @@ public abstract class DOMSignatureMethod extends AbstractDOMSignatureMethod {
                                                          size/8);
             } else if (type == Type.ECDSA) {
                 return SignatureECDSA.convertASN1toXMLDSIG(signature.sign());
+            } else if (type == Type.ECSM2) {
+                return SignatureECSM2.convertASN1toXMLDSIG(signature.sign());
             } else {
                 return signature.sign();
             }
@@ -732,25 +737,25 @@ public abstract class DOMSignatureMethod extends AbstractDOMSignatureMethod {
         }
     }
 
-    static final class SM3withECDSA extends DOMSignatureMethod {
-    	SM3withECDSA(AlgorithmParameterSpec params)
+    static final class SM3withECSM2 extends DOMSignatureMethod {
+    	SM3withECSM2(AlgorithmParameterSpec params)
             throws InvalidAlgorithmParameterException {
             super(params);
         }
-    	SM3withECDSA(Element dmElem) throws MarshalException {
+    	SM3withECSM2(Element dmElem) throws MarshalException {
             super(dmElem);
         }
         @Override
         public String getAlgorithm() {
-            return ECDSA_SM3;
+            return ECSM2_SM3;
         }
         @Override
         String getJCAAlgorithm() {
-            return "SM3withECDSA";
+            return "SM3withECSM2";
         }
         @Override
         Type getAlgorithmType() {
-            return Type.ECDSA;
+            return Type.ECSM2;
         }
     }
 }
