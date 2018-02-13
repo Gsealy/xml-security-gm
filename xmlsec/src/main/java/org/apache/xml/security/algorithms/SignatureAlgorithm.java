@@ -23,7 +23,6 @@ import java.security.SecureRandom;
 import java.security.spec.AlgorithmParameterSpec;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-
 import org.apache.xml.security.algorithms.implementations.IntegrityHmac;
 import org.apache.xml.security.algorithms.implementations.SignatureBaseRSA;
 import org.apache.xml.security.algorithms.implementations.SignatureDSA;
@@ -469,7 +468,7 @@ public class SignatureAlgorithm extends Algorithm {
             XMLSignature.ALGO_ID_MAC_HMAC_SHA512, IntegrityHmac.IntegrityHmacSHA512.class
         );
         algorithmHash.put(
-                XMLSignature.ALGO_ID_SIGNATURE_ECDSA_SM3, IntegrityHmac.IntegrityHmacSM3.class
+                XMLSignature.ALGO_ID_SIGNATURE_ECSM2_SM3, IntegrityHmac.IntegrityHmacSM3.class
             );
     }
 
@@ -478,6 +477,7 @@ public class SignatureAlgorithm extends Algorithm {
      *
      * @return URI of this element
      */
+    @Override
     public String getBaseNamespace() {
         return Constants.SignatureSpecNS;
     }
@@ -487,6 +487,7 @@ public class SignatureAlgorithm extends Algorithm {
      *
      * @return Local name
      */
+    @Override
     public String getBaseLocalName() {
         return Constants._TAG_SIGNATUREMETHOD;
     }

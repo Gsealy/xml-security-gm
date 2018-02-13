@@ -35,7 +35,7 @@ buildNumber.properties
 hs_err_pid*
 
 #Other files
-/.settings/
-.gitigore.bak
+.settings/
 .classpath
 .project
+.gitignore.bak

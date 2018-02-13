@@ -23,10 +23,8 @@ import java.security.InvalidKeyException;
 import java.security.Key;
 import java.security.SecureRandom;
 import java.security.spec.AlgorithmParameterSpec;
-
 import javax.crypto.Mac;
 import javax.crypto.SecretKey;
-
 import org.apache.xml.security.algorithms.JCEMapper;
 import org.apache.xml.security.algorithms.MessageDigestAlgorithm;
 import org.apache.xml.security.algorithms.SignatureAlgorithmSpi;
@@ -570,7 +568,7 @@ public abstract class IntegrityHmac extends SignatureAlgorithmSpi {
          * {@inheritDoc}
          */
         public String engineGetURI() {
-            return XMLSignature.ALGO_ID_SIGNATURE_ECDSA_SM3;
+            return XMLSignature.ALGO_ID_SIGNATURE_ECSM2_SM3;
         }
 
         int getDigestLength() {

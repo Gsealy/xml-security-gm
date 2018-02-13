@@ -38,3 +38,6 @@ hs_err_pid*
 .settings/
 .classpath
 .project
+.gitignore.bak
+.pmd
+.pmdruleset.xml
