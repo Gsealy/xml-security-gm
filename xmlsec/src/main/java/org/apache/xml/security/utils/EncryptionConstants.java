@@ -120,6 +120,12 @@ public final class EncryptionConstants {
      */
     public static final String EncryptionSpec11NS =
         "http://www.w3.org/2009/xmlenc11#";
+    
+    /**
+     * XXX The namespace of the GM
+     */
+    public static final String EncryptionSpecGMNS =
+        "http://www.w3.org/2018/02/xmlgmdsig#";
 
     /** URI for content*/
     public static final String TYPE_CONTENT = EncryptionSpecNS + "Content";
@@ -134,6 +140,10 @@ public final class EncryptionConstants {
     /** Block Encryption - REQUIRED TRIPLEDES */
     public static final String ALGO_ID_BLOCKCIPHER_TRIPLEDES =
         EncryptionConstants.EncryptionSpecNS + "tripledes-cbc";
+    
+    /** Block Encryption - SM4 */
+    public static final String ALGO_ID_BLOCKCIPHER_SM4 =
+        EncryptionConstants.EncryptionSpecGMNS + "sm4-cbc";
 
     /** Block Encryption - REQUIRED AES-128 */
     public static final String ALGO_ID_BLOCKCIPHER_AES128 =
@@ -257,6 +267,10 @@ public final class EncryptionConstants {
 
     /** MGF1 with SHA-512 */
     public static final String MGF1_SHA512 =
+        EncryptionConstants.EncryptionSpec11NS + "mgf1sha512";
+    
+    /** SM4 */
+    public static final String SM4 =
         EncryptionConstants.EncryptionSpec11NS + "mgf1sha512";
 
 

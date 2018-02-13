@@ -106,6 +106,11 @@ public class JCEMapper {
             MessageDigestAlgorithm.ALGO_ID_DIGEST_SHA3_512,
             new Algorithm("", "SHA3-512", "MessageDigest")
         );
+        //XXX SM3
+        algorithmsMap.put(
+                MessageDigestAlgorithm.ALGO_ID_DIGEST_SM3,
+                new Algorithm("", "SM3", "MessageDigest")
+            );
         // Signature algorithms
         algorithmsMap.put(
             XMLSignature.ALGO_ID_SIGNATURE_DSA,
@@ -203,6 +208,11 @@ public class JCEMapper {
             XMLSignature.ALGO_ID_SIGNATURE_ECDSA_RIPEMD160,
             new Algorithm("EC", "RIPEMD160withECDSA", "Signature")
         );
+        //XXX GM Sign
+        algorithmsMap.put(
+                XMLSignature.ALGO_ID_SIGNATURE_ECSM2_SM3,
+                new Algorithm("EC", "SM3withECSM2", "Signature")
+            );
         algorithmsMap.put(
             XMLSignature.ALGO_ID_MAC_HMAC_NOT_RECOMMENDED_MD5,
             new Algorithm("", "HmacMD5", "Mac", 0, 0)
@@ -231,11 +241,21 @@ public class JCEMapper {
             XMLSignature.ALGO_ID_MAC_HMAC_SHA512,
             new Algorithm("", "HmacSHA512", "Mac", 0, 0)
         );
+        //XXX HMAC-SM3
+        algorithmsMap.put(
+                XMLSignature.ALGO_ID_MAC_HMAC_SM3,
+                new Algorithm("", "HmacSM3", "Mac", 0, 0)
+            );
         // Encryption algorithms
         algorithmsMap.put(
             XMLCipher.TRIPLEDES,
             new Algorithm("DESede", "DESede/CBC/ISO10126Padding", "BlockEncryption", 192, 64)
         );
+        //XXX add sm4
+        algorithmsMap.put(
+            XMLCipher.SM4,
+            new Algorithm("SM4", "SM4/CBC/PKCS7Padding", "BlockEncryption", 128, 128)
+            );
         algorithmsMap.put(
             XMLCipher.AES_128,
             new Algorithm("AES", "AES/CBC/ISO10126Padding", "BlockEncryption", 128, 128)

@@ -36,6 +36,5 @@ hs_err_pid*
 
 #Other files
 .settings/
-.gitigore.bak
 .classpath
 .project

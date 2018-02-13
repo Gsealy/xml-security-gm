@@ -35,7 +35,6 @@ import java.security.InvalidAlgorithmParameterException;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
-import org.apache.jcp.xml.dsig.internal.dom.DOMSignatureMethod.SM3withECDSA;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -317,8 +316,8 @@ public final class DOMXMLSignatureFactory extends XMLSignatureFactory {
             return new DOMSignatureMethod.RIPEMD160withECDSA(params);
         } else if (algorithm.equals(DOMHMACSignatureMethod.HMAC_SM3)) { //HMAC-SM3
             return new DOMHMACSignatureMethod.SM3(params);
-        } else if (algorithm.equals(DOMSignatureMethod.ECDSA_SM3)) { //ECDSA-SM3
-            return new DOMSignatureMethod.SM3withECDSA(params);
+        } else if (algorithm.equals(DOMSignatureMethod.ECSM2_SM3)) { //ECDSA-SM3
+            return new DOMSignatureMethod.SM3withECSM2(params);
         } else {
             throw new NoSuchAlgorithmException("unsupported algorithm");
         }

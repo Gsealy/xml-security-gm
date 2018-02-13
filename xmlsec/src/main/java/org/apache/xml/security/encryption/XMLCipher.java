@@ -90,6 +90,10 @@ public class XMLCipher {
     /** AES 128 Cipher */
     public static final String AES_128 =
         EncryptionConstants.ALGO_ID_BLOCKCIPHER_AES128;
+    
+    /** AES 128 Cipher */
+    public static final String SM4 =
+        EncryptionConstants.ALGO_ID_BLOCKCIPHER_SM4;
 
     /** AES 256 Cipher */
     public static final String AES_256 =
