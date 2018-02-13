@@ -24,20 +24,29 @@
  */
 package org.apache.jcp.xml.dsig.internal.dom;
 
-import javax.xml.crypto.*;
-import javax.xml.crypto.dsig.*;
-import javax.xml.crypto.dsig.spec.SignatureMethodParameterSpec;
-
 import java.io.IOException;
-import java.security.*;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.Key;
+import java.security.NoSuchAlgorithmException;
+import java.security.PrivateKey;
+import java.security.Provider;
+import java.security.PublicKey;
+import java.security.Signature;
+import java.security.SignatureException;
 import java.security.interfaces.DSAKey;
 import java.security.spec.AlgorithmParameterSpec;
-import org.w3c.dom.Element;
-
+import javax.xml.crypto.MarshalException;
+import javax.xml.crypto.dsig.SignatureMethod;
+import javax.xml.crypto.dsig.XMLSignContext;
+import javax.xml.crypto.dsig.XMLSignatureException;
+import javax.xml.crypto.dsig.XMLValidateContext;
+import javax.xml.crypto.dsig.spec.SignatureMethodParameterSpec;
+import org.apache.jcp.xml.dsig.internal.SignerOutputStream;
 import org.apache.xml.security.algorithms.implementations.SignatureECDSA;
 import org.apache.xml.security.algorithms.implementations.SignatureECSM2;
 import org.apache.xml.security.utils.JavaUtils;
-import org.apache.jcp.xml.dsig.internal.SignerOutputStream;
+import org.w3c.dom.Element;
 
 /**
  * DOM-based abstract implementation of SignatureMethod.
@@ -751,7 +760,7 @@ public abstract class DOMSignatureMethod extends AbstractDOMSignatureMethod {
         }
         @Override
         String getJCAAlgorithm() {
-            return "SM3withECSM2";
+            return "SM3WithSM2";
         }
         @Override
         Type getAlgorithmType() {
