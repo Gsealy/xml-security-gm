@@ -24,26 +24,25 @@
  */
 package org.apache.jcp.xml.dsig.internal.dom;
 
-import javax.xml.crypto.*;
-import javax.xml.crypto.dsig.*;
-import javax.xml.crypto.dsig.spec.HMACParameterSpec;
-import javax.xml.crypto.dsig.spec.SignatureMethodParameterSpec;
-
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.Key;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
-import java.security.ProviderException;
 import java.security.SignatureException;
 import java.security.spec.AlgorithmParameterSpec;
-
 import javax.crypto.Mac;
 import javax.crypto.SecretKey;
-import org.w3c.dom.Element;
-
+import javax.xml.crypto.MarshalException;
+import javax.xml.crypto.dsig.SignatureMethod;
+import javax.xml.crypto.dsig.XMLSignContext;
+import javax.xml.crypto.dsig.XMLSignature;
+import javax.xml.crypto.dsig.XMLSignatureException;
+import javax.xml.crypto.dsig.XMLValidateContext;
+import javax.xml.crypto.dsig.spec.HMACParameterSpec;
+import javax.xml.crypto.dsig.spec.SignatureMethodParameterSpec;
 import org.apache.jcp.xml.dsig.internal.MacOutputStream;
+import org.w3c.dom.Element;
 
 /**
  * DOM-based implementation of HMAC SignatureMethod.
@@ -68,8 +67,6 @@ public abstract class DOMHMACSignatureMethod extends AbstractDOMSignatureMethod 
     
     static final String HMAC_SM3 =
             "http://www.w3.org/2018/02/xmlgmdsig#hmac-sm3";
-    // change provider
-    static final String BC = "BC";
 
     private Mac hmac;
     private int outputLength;
@@ -156,11 +153,9 @@ public abstract class DOMHMACSignatureMethod extends AbstractDOMSignatureMethod 
         }
         if (hmac == null) {
             try {
-					hmac = Mac.getInstance(getJCAAlgorithm(),BC);
+					hmac = Mac.getInstance(getJCAAlgorithm());
             } catch (NoSuchAlgorithmException nsae) {
                 throw new XMLSignatureException(nsae);
-            } catch (NoSuchProviderException e) {
-            	throw new ProviderException(e);
             }
         }
         if (outputLengthSet && outputLength < getDigestLength()) {
@@ -186,12 +181,10 @@ public abstract class DOMHMACSignatureMethod extends AbstractDOMSignatureMethod 
         }
         if (hmac == null) {
             try {
-                hmac = Mac.getInstance(getJCAAlgorithm(),BC);
+                hmac = Mac.getInstance(getJCAAlgorithm());
             } catch (NoSuchAlgorithmException nsae) {
                 throw new XMLSignatureException(nsae);
-            } catch (NoSuchProviderException e) {
-            	throw new ProviderException(e);
-			}
+            }
         }
         if (outputLengthSet && outputLength < getDigestLength()) {
             throw new XMLSignatureException
