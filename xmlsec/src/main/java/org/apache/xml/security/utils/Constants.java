@@ -265,7 +265,7 @@ public final class Constants {
         "http://www.certicom.com/2000/11/xmlecdsig#ecdsa-sha1";
     
     /**GM - GMURI */
-    public static final String GMAlgorithmsSpec =
+    public static final String GMAlgorithmsSpecNS =
     		"http://www.w3.org/2018/02/xmlgmdsig#";
 
     private Constants() {

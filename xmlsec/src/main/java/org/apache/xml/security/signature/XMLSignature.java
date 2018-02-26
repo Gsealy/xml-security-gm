@@ -175,7 +175,7 @@ public final class XMLSignature extends SignatureElementProxy {
     
     /** HMAC - Optional HMAC-SM3 */
     public static final String ALGO_ID_MAC_HMAC_SM3 =
-        Constants.GMAlgorithmsSpec + "hmac-sm3";
+        Constants.GMAlgorithmsSpecNS + "hmac-sm3";
 
     /**Signature - Optional ECDSAwithSHA1 */
     public static final String ALGO_ID_SIGNATURE_ECDSA_SHA1 =
