@@ -188,7 +188,14 @@
                   RequirementLevel="OPTIONAL"
                   KeyLength="512"
                   JCEName="SHA-512"/>
-
+               
+       <Algorithm URI="http://www.w3.org/2018/02/xmlgmdsig#sm3"
+                    Description="SM3 message digest with 256 bit"
+                    AlgorithmClass="MessageDigest"
+                    RequirementLevel="OPTIONAL"
+                    KeyLength="256"
+                    JCEName="SM3"/> 
+                  
          <!-- Signature Algorithms -->
          <Algorithm URI="http://www.w3.org/2000/09/xmldsig#dsa-sha1"
                     Description="Digital Signature Algorithm with SHA-1 message digest"
@@ -342,6 +349,14 @@
                     SpecificationURL="https://tools.ietf.org/html/rfc6931"
                     RequiredKey="RIPEMD160withECDSA"
                     JCEName="RIPEMD160withECDSA"/>
+                    
+         <Algorithm URI="http://www.w3.org/2018/02/xmlgmdsig#ecsm2-sm3"
+                    Description="ECSM2 Signature with SM3 message digest"
+                    AlgorithmClass="Signature"
+                    RequirementLevel="OPTIONAL"
+                    SpecificationURL="GM/T 0003-2012"
+                    RequiredKey="SM3WithSM2"
+                    JCEName="SM3WithSM2"/>
 
          <!-- MAC Algorithms -->
          <Algorithm URI="http://www.w3.org/2001/04/xmldsig-more#hmac-md5"

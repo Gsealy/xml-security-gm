@@ -100,7 +100,6 @@ public abstract class DOMSignatureMethod extends AbstractDOMSignatureMethod {
     static final String RSA_RIPEMD160_MGF1 =
         "http://www.w3.org/2007/05/xmldsig-more#ripemd160-rsa-MGF1";
     
-    // ECDSA_SM3
     static final String ECSM2_SM3 =
             "http://www.w3.org/2018/02/xmlgmdsig#ecsm2-sm3";
 
@@ -198,7 +197,7 @@ public abstract class DOMSignatureMethod extends AbstractDOMSignatureMethod {
             return new DOMHMACSignatureMethod.RIPEMD160(smElem);
         } else if (alg.equals(DOMHMACSignatureMethod.HMAC_SM3)) { //HMAC-SM3
             return new DOMHMACSignatureMethod.SM3(smElem);
-        } else if (alg.equals(ECSM2_SM3)) { //ECDSA-SM3
+        } else if (alg.equals(ECSM2_SM3)) { 
             return new SM3withECSM2(smElem);
         }else {
             throw new MarshalException

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+	xmlns:gmdsig="http://www.w3.org/2018/xmlgmdsig#" targetNamespace="http://www.w3.org/2018/xmlgmdsig#"
+	version="0.1" elementFormDefault="qualified">
+	<!-- 导入xmldisg命名空间内容 -->
+	<!-- 应该就不需要导入disg的命名空间了 -->
+	<!-- <import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation='./xmlgdsig-core-schema.xsd'/> -->
+	<!-- 导入xmldisg11命名空间内容 -->
+	<import namespace="http://www.w3.org/2018/xmldsig11#" schemaLocation='./xmldsig11-schema.xsd'/>
+
+	<element name="ECKeyValue" type="gmdsig:ECKeyValueType"/>
+	<complexType name="ECKeyValueType">
+		<sequence>
+			<choice>
+				<element name="NamedCurve" type="gmdsig:NamedCurveType"/>
+			</choice>
+		</sequence>
+		<attribute name="Id" type="ID" use="optional"/>
+	</complexType>
+	
+</schema>
+
