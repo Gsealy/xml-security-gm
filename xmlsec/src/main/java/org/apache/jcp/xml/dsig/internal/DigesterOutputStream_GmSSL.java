@@ -95,7 +95,7 @@ public class DigesterOutputStream_GmSSL extends OutputStream {
   /**
    * @return the digest value
    */
-  public byte[] getDigestValue() {
+  public synchronized byte[] getDigestValue() {
     return gmssl.digest(digestAlg, update);
   }
 

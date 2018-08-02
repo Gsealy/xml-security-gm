@@ -68,14 +68,14 @@ public class SignerOutputStream_GmSSL extends ByteArrayOutputStream {
     }
   }
 
-  public byte[] getSignValue() {
+  public synchronized byte[] getSignValue() {
     if (priv == null || update == null) {
       throw new NullPointerException("priv key or data is null");
     }
     return gmssl.sign(signAlg, update, priv);
   }
 
-  public boolean getVerify(byte[] sig) {
+  public synchronized boolean getVerify(byte[] sig) {
     if (pub == null || update == null) {
       throw new NullPointerException("Pub key or data is null");
     }
