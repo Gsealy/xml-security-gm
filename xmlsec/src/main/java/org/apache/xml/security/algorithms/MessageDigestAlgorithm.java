@@ -69,7 +69,10 @@ public class MessageDigestAlgorithm extends Algorithm {
     
     // GM SM3
     public static final String ALGO_ID_DIGEST_SM3 =
-            Constants.GMAlgorithmsCryptoNS + "sm3";
+            Constants.GMAlgorithmsSpecNS + "sm3";
+    // GM SM3 with SSL
+    public static final String ALGO_ID_DIGEST_SM3_SSL =
+        Constants.GMAlgorithmsSpecNS + "sm3_ssl";
     
     /** Field algorithm stores the actual {@link java.security.MessageDigest} */
     private final MessageDigest algorithm;

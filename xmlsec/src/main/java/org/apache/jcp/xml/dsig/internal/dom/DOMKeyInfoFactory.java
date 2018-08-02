@@ -31,12 +31,19 @@ import java.security.interfaces.DSAPublicKey;
 import java.security.interfaces.ECPublicKey;
 import java.security.interfaces.RSAPublicKey;
 import java.util.List;
-
-import javax.xml.crypto.*;
+import javax.xml.crypto.MarshalException;
+import javax.xml.crypto.URIDereferencer;
+import javax.xml.crypto.XMLStructure;
 import javax.xml.crypto.dom.DOMCryptoContext;
 import javax.xml.crypto.dsig.XMLSignature;
-import javax.xml.crypto.dsig.keyinfo.*;
-
+import javax.xml.crypto.dsig.keyinfo.KeyInfo;
+import javax.xml.crypto.dsig.keyinfo.KeyInfoFactory;
+import javax.xml.crypto.dsig.keyinfo.KeyName;
+import javax.xml.crypto.dsig.keyinfo.KeyValue;
+import javax.xml.crypto.dsig.keyinfo.PGPData;
+import javax.xml.crypto.dsig.keyinfo.RetrievalMethod;
+import javax.xml.crypto.dsig.keyinfo.X509Data;
+import javax.xml.crypto.dsig.keyinfo.X509IssuerSerial;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -75,7 +82,9 @@ public final class DOMKeyInfoFactory extends KeyInfoFactory {
             return new DOMKeyValue.RSA((RSAPublicKey) key);
         } else if ("EC".equals(algorithm)) {
             return new DOMKeyValue.EC((ECPublicKey) key);
-        } else {
+        }  else if ("ECDSA".equals(algorithm)) {
+          return new DOMKeyValue.EC((ECPublicKey) key);
+      } else {
             throw new KeyException("unsupported key algorithm: " + algorithm);
         }
     }

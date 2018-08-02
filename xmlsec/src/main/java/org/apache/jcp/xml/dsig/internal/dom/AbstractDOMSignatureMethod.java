@@ -19,16 +19,16 @@
 
 package org.apache.jcp.xml.dsig.internal.dom;
 
-import java.security.Key;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
+import java.security.Key;
 import java.security.SignatureException;
 import java.security.spec.AlgorithmParameterSpec;
 import javax.xml.crypto.MarshalException;
 import javax.xml.crypto.dsig.SignatureMethod;
+import javax.xml.crypto.dsig.XMLSignContext;
 import javax.xml.crypto.dsig.XMLSignature;
 import javax.xml.crypto.dsig.XMLSignatureException;
-import javax.xml.crypto.dsig.XMLSignContext;
 import javax.xml.crypto.dsig.XMLValidateContext;
 import javax.xml.crypto.dsig.spec.SignatureMethodParameterSpec;
 import org.w3c.dom.Element;
@@ -41,7 +41,7 @@ abstract class AbstractDOMSignatureMethod extends BaseStructure
     implements SignatureMethod {
 
     // denotes the type of signature algorithm
-    enum Type { DSA, RSA, ECDSA, HMAC, ECSM2 }
+    enum Type { DSA, RSA, ECDSA, HMAC, ECSM2, GMSSL}
 
     /**
      * Verifies the passed-in signature with the specified key, using the

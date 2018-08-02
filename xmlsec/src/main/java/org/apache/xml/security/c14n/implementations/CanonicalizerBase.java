@@ -29,9 +29,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 import java.util.Set;
-
 import javax.xml.parsers.ParserConfigurationException;
-
 import org.apache.xml.security.c14n.CanonicalizationException;
 import org.apache.xml.security.c14n.CanonicalizerSpi;
 import org.apache.xml.security.c14n.helper.AttrCompare;
@@ -711,9 +709,9 @@ public abstract class CanonicalizerBase extends CanonicalizerSpi {
                 toWrite = XA.clone();
                 break;
 
-            case 0x0D :    // '\r'
-                toWrite = XD.clone();
-                break;
+//            case 0x0D :    // '\r'
+//                toWrite = XD.clone();
+//                break;
 
             default :
                 if (c < 0x80) {
@@ -750,15 +748,15 @@ public abstract class CanonicalizerBase extends CanonicalizerSpi {
         for (int i = 0; i < length; ) {
             int c = target.codePointAt(i);
             i += Character.charCount(c);
-            if (c == 0x0D) {
-                writer.write(XD.clone());
-            } else {
+//            if (c == 0x0D) {
+//                writer.write(XD.clone());
+//            } else {
                 if (c < 0x80) {
                     writer.write(c);
                 } else {
                     UtfHelpper.writeCodePointToUtf8(c, writer);
                 }
-            }
+//            }
         }
 
         final String data = currentPI.getData();
@@ -806,15 +804,15 @@ public abstract class CanonicalizerBase extends CanonicalizerSpi {
         for (int i = 0; i < length; ) {
             int c = data.codePointAt(i);
             i += Character.charCount(c);
-            if (c == 0x0D) {
-                writer.write(XD.clone());
-            } else {
+//            if (c == 0x0D) {
+//                writer.write(XD.clone());
+//            } else {
                 if (c < 0x80) {
                     writer.write(c);
                 } else {
                     UtfHelpper.writeCodePointToUtf8(c, writer);
                 }
-            }
+//            }
         }
 
         writer.write(END_COMM.clone());
@@ -853,9 +851,9 @@ public abstract class CanonicalizerBase extends CanonicalizerSpi {
                 toWrite = GT.clone();
                 break;
 
-            case 0xD :
-                toWrite = XD.clone();
-                break;
+//            case 0xD :
+//                toWrite = XD.clone();
+//                break;
 
             default :
                 if (c < 0x80) {

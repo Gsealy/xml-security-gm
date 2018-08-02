@@ -45,7 +45,8 @@ public abstract class DOMDigestMethod extends BaseStructure implements DigestMet
 	static final String SHA3_256 = "http://www.w3.org/2007/05/xmldsig-more#sha3-256"; // see RFC 6931
 	static final String SHA3_384 = "http://www.w3.org/2007/05/xmldsig-more#sha3-384"; // see RFC 6931
 	static final String SHA3_512 = "http://www.w3.org/2007/05/xmldsig-more#sha3-512"; // see RFC 6931
-	static final String SM3 = "http://www.w3.org/2018/02/xmlgmenc#sm3";
+	static final String SM3 = "http://www.w3.org/2018/02/xmlgmdsig#sm3";
+	static final String SM3_GmSSL = "http://www.w3.org/2018/02/xmlgmdsig#sm3_ssl";
 
 	private DigestMethodParameterSpec params;
 
@@ -111,7 +112,9 @@ public abstract class DOMDigestMethod extends BaseStructure implements DigestMet
 			return new SHA3_512(dmElem);
 		} else if (alg.equals(SM3)) {
 			return new SM3(dmElem);
-		} else {
+		} else if (alg.equals(SM3_GmSSL)) {
+          return new SM3_SSL(dmElem);
+        } else {
 			throw new MarshalException("unsupported DigestMethod algorithm: " + alg);
 		}
 	}
@@ -460,4 +463,24 @@ public abstract class DOMDigestMethod extends BaseStructure implements DigestMet
 			return "SM3";
 		}
 	}
+	
+	   static final class SM3_SSL extends DOMDigestMethod {
+	     SM3_SSL(AlgorithmParameterSpec params) throws InvalidAlgorithmParameterException {
+	            super(params);
+	        }
+
+	     SM3_SSL(Element dmElem) throws MarshalException {
+	            super(dmElem);
+	        }
+
+	        @Override
+	        public String getAlgorithm() {
+	            return SM3_GmSSL;
+	        }
+
+	        @Override
+	        String getMessageDigestAlgorithm() {
+	            return "SM3_SSL";
+	        }
+	    }
 }

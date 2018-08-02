@@ -20,7 +20,6 @@ package org.apache.xml.security.algorithms;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-
 import org.apache.xml.security.encryption.XMLCipher;
 import org.apache.xml.security.signature.XMLSignature;
 import org.apache.xml.security.utils.JavaUtils;

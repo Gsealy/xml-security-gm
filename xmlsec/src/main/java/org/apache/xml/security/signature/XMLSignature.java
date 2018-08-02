@@ -204,6 +204,10 @@ public final class XMLSignature extends SignatureElementProxy {
     /**Signature - Optional ECSM2withSM3 */
     public static final String ALGO_ID_SIGNATURE_ECSM2_SM3 =
         "http://www.w3.org/2018/02/xmlgmdsig#ecsm2-sm3";
+    
+    /**Signature - Optional ECSM2withSM3 */
+    public static final String ALGO_ID_SIGNATURE_ECSM2_SM3_GMSSL =
+        "http://www.w3.org/2018/02/xmlgmdsig#sslsm2-sm3";
 
     private static final org.slf4j.Logger LOG =
         org.slf4j.LoggerFactory.getLogger(XMLSignature.class);

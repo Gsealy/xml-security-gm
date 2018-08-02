@@ -266,6 +266,8 @@ public final class DOMXMLSignatureFactory extends XMLSignatureFactory {
             return new DOMDigestMethod.SHA3_512(params);
         } else if (algorithm.equals(DOMDigestMethod.SM3)) {
             return new DOMDigestMethod.SM3(params);
+        } else if (algorithm.equals(DOMDigestMethod.SM3_GmSSL)) {
+          return new DOMDigestMethod.SM3_SSL(params);
         } else {
             throw new NoSuchAlgorithmException("unsupported algorithm");
         }
@@ -336,6 +338,8 @@ public final class DOMXMLSignatureFactory extends XMLSignatureFactory {
             return new DOMHMACSignatureMethod.SM3(params);
         } else if (algorithm.equals(DOMSignatureMethod.ECSM2_SM3)) { //ECSM2-SM3
             return new DOMSignatureMethod.SM3withECSM2(params);
+        } else if (algorithm.equals(DOMSignatureMethod.ECSM2_SM3_GmSSL)) { //ECSM2-SM3
+          return new DOMSignatureMethod.SM3withECSM2_GmSSL(params);
         } else {
             throw new NoSuchAlgorithmException("unsupported algorithm");
         }

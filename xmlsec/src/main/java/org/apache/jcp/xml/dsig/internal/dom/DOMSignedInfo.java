@@ -24,20 +24,29 @@
  */
 package org.apache.jcp.xml.dsig.internal.dom;
 
-import javax.xml.crypto.*;
-import javax.xml.crypto.dsig.*;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.IOException;
 import java.security.Provider;
-import java.util.*;
-
-import org.w3c.dom.Element;
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.Collections;
+import java.util.List;
+import javax.xml.crypto.MarshalException;
+import javax.xml.crypto.XMLCryptoContext;
+import javax.xml.crypto.XMLStructure;
+import javax.xml.crypto.dsig.CanonicalizationMethod;
+import javax.xml.crypto.dsig.Reference;
+import javax.xml.crypto.dsig.SignatureMethod;
+import javax.xml.crypto.dsig.SignedInfo;
+import javax.xml.crypto.dsig.TransformException;
+import javax.xml.crypto.dsig.XMLSignature;
+import javax.xml.crypto.dsig.XMLSignatureException;
 import org.apache.xml.security.utils.Constants;
 import org.apache.xml.security.utils.UnsyncBufferedOutputStream;
+import org.w3c.dom.Element;
 
 /**
  * DOM-based implementation of SignedInfo.
