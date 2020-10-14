@@ -44,7 +44,7 @@ import org.apache.xml.security.algorithms.implementations.SignatureECDSA;
 import org.apache.xml.security.algorithms.implementations.SignatureECSM2;
 import org.apache.xml.security.utils.JavaUtils;
 import org.w3c.dom.Element;
-import cn.com.infosec.gmssl.GmSSL;
+import cn.com.infosec.ipp.IPPJNI;
 
 /**
  * DOM-based abstract implementation of SignatureMethod.
@@ -58,7 +58,9 @@ public abstract class DOMSignatureMethod extends AbstractDOMSignatureMethod {
   private SignatureMethodParameterSpec params;
   private Signature signature;
 
-  private GmSSL gmssl;
+//  private GmSSL gmssl;
+
+  private IPPJNI ipp;
 
   // see RFC 4051 for these algorithm definitions
   static final String RSA_SHA224 = "http://www.w3.org/2001/04/xmldsig-more#rsa-sha224";
@@ -204,8 +206,9 @@ public abstract class DOMSignatureMethod extends AbstractDOMSignatureMethod {
     }
     String alg = getJCAAlgorithm();
     if ("_SSLSM3WithSM2".equals(alg)) {
-      gmssl = new GmSSL();
-      try (SignerOutputStream_GmSSL outputStream = new SignerOutputStream_GmSSL(gmssl)) {
+      // gmssl = new GmSSL();
+      ipp = new IPPJNI();
+      try (SignerOutputStream_GmSSL outputStream = new SignerOutputStream_GmSSL(ipp)) {
         outputStream.initKey(key);
         si.canonicalize(context, outputStream);
         return outputStream.getVerify(SignatureECSM2.convertXMLDSIGtoASN1(sig));
@@ -261,16 +264,13 @@ public abstract class DOMSignatureMethod extends AbstractDOMSignatureMethod {
     }
     String alg = getJCAAlgorithm();
     if ("_SSLSM3WithSM2".equals(alg)) {
-      gmssl = new GmSSL();
-      try (SignerOutputStream_GmSSL outputStream = new SignerOutputStream_GmSSL(gmssl)) {
+//      gmssl = new GmSSL();
+      ipp = new IPPJNI();
+      try (SignerOutputStream_GmSSL outputStream = new SignerOutputStream_GmSSL(ipp)) {
         // init key
         // TODO update data and sign
         outputStream.initKey((PrivateKey) key);
         si.canonicalize(context, outputStream);
-        // export jni error
-        for (String error : gmssl.getErrorStrings()) {
-          LOG.debug("JNI Error: {}", error);
-        }
         return SignatureECSM2.convertASN1toXMLDSIG(outputStream.getSignValue());
       } catch (IOException se) {
         throw new XMLSignatureException(se);

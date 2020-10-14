@@ -72,7 +72,7 @@ import org.apache.xml.security.utils.XMLUtils;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
-import cn.com.infosec.gmssl.GmSSL;
+import cn.com.infosec.ipp.IPPJNI;
 
 /**
  * DOM-based implementation of Reference.
@@ -117,7 +117,9 @@ public final class DOMReference extends DOMStructure implements Reference, DOMUR
   private MessageDigest md;
   private Provider provider;
 
-  private GmSSL gmssl;
+//  private GmSSL gmssl;
+
+  private IPPJNI ipp;
 
   /**
    * Creates a <code>Reference</code> from the specified parameters.
@@ -369,16 +371,19 @@ public final class DOMReference extends DOMStructure implements Reference, DOMUR
    */
   private byte[] transform_SSL(Data dereferencedData, XMLCryptoContext context)
       throws XMLSignatureException {
-    if (gmssl == null) {
-      gmssl = new GmSSL();
+//    if (gmssl == null) {
+//      gmssl = new GmSSL();
+//    }
+    if (ipp == null ) {
+      ipp = new IPPJNI();
     }
     DigesterOutputStream_GmSSL dos;
     Boolean cache = (Boolean) context.getProperty("javax.xml.crypto.dsig.cacheReference");
     if (cache != null && cache) {
       this.derefData = copyDerefData(dereferencedData);
-      dos = new DigesterOutputStream_GmSSL(gmssl, true);
+      dos = new DigesterOutputStream_GmSSL(ipp, true);
     } else {
-      dos = new DigesterOutputStream_GmSSL(gmssl);
+      dos = new DigesterOutputStream_GmSSL(ipp);
     }
     Data data = dereferencedData;
     try (OutputStream os = new UnsyncBufferedOutputStream(dos)) {

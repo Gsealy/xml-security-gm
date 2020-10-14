@@ -22,9 +22,9 @@ package org.apache.jcp.xml.dsig.internal;
 
 import java.io.ByteArrayOutputStream;
 import java.security.Key;
-import java.security.PrivateKey;
-import java.security.PublicKey;
-import cn.com.infosec.gmssl.GmSSL;
+import org.bouncycastle.jcajce.provider.asymmetric.ec.BCECPrivateKey;
+import org.bouncycastle.jcajce.provider.asymmetric.ec.BCECPublicKey;
+import cn.com.infosec.ipp.IPPJNI;
 
 /**
  * Derived from Apache sources and changed to use java.security.Signature objects as input instead
@@ -32,15 +32,16 @@ import cn.com.infosec.gmssl.GmSSL;
  *
  */
 public class SignerOutputStream_GmSSL extends ByteArrayOutputStream {
-  private final GmSSL gmssl;
+  private final IPPJNI ipp;
+  // private final GmSSL gmssl;
   private byte[] update;
-  private final String digestAlg = "SM3";
-  private final String signAlg = "sm2sign";
+  // private final String digestAlg = "SM3";
+  // private final String signAlg = "sm2sign";
   private byte[] priv;
   private byte[] pub;
 
-  public SignerOutputStream_GmSSL(GmSSL gm) {
-    this.gmssl = gm;
+  public SignerOutputStream_GmSSL(IPPJNI ipp) {
+    this.ipp = ipp;
     this.update = null;
     this.priv = null;
     this.pub = null;
@@ -57,28 +58,43 @@ public class SignerOutputStream_GmSSL extends ByteArrayOutputStream {
   @Override
   public void write(byte[] arg0, int arg1, int arg2) {
     super.write(arg0, arg1, arg2);
-    this.update = gmssl.digest(digestAlg, arg0);
+    this.update = arg0;
   }
 
   public void initKey(Key pkey) {
-    if (pkey instanceof PrivateKey) {
-      this.priv = pkey.getEncoded();
-    } else if (pkey instanceof PublicKey) {
-      this.pub = pkey.getEncoded();
+    if (pkey instanceof BCECPrivateKey) {
+      BCECPrivateKey priv = (BCECPrivateKey) pkey;
+      this.priv = priv.getD().toByteArray();
+    } else if (pkey instanceof BCECPublicKey) {
+      byte[] data = pkey.getEncoded();
+      setPublicKey(data);
     }
   }
 
-  public synchronized byte[] getSignValue() {
+  public byte[] getSignValue() {
     if (priv == null || update == null) {
       throw new NullPointerException("priv key or data is null");
     }
-    return gmssl.sign(signAlg, update, priv);
+    return ipp.sm2sign(update, priv);
   }
 
-  public synchronized boolean getVerify(byte[] sig) {
+  public boolean getVerify(byte[] sig) {
     if (pub == null || update == null) {
       throw new NullPointerException("Pub key or data is null");
     }
-    return gmssl.verify(signAlg, update, sig, pub) == 1 ? true : false;
+    return ipp.sm2verify(update, sig, pub) == 1;
+  }
+
+  /** 暂时只针对SM2公钥 */
+  private void setPublicKey(byte[] data) {
+    int j = 0;
+    for (int i = 0; i < data.length; i++) {
+      if (data[i] == 0x03 && data[i + 1] == 0x42 && data[i + 2] == 0x00) {
+        j = i + 3;
+      }
+    }
+    byte[] dest = new byte[65];
+    System.arraycopy(data, j, dest, 0, 65);
+    this.pub = dest;
   }
 }

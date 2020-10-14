@@ -25,7 +25,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import org.apache.xml.security.utils.UnsyncByteArrayOutputStream;
-import cn.com.infosec.gmssl.GmSSL;
+import cn.com.infosec.ipp.IPPJNI;
 
 /**
  * modified the DigesterOutputStream, to support the GmSSL.
@@ -35,10 +35,11 @@ public class DigesterOutputStream_GmSSL extends OutputStream {
   private static final org.slf4j.Logger LOG =
       org.slf4j.LoggerFactory.getLogger(DigesterOutputStream_GmSSL.class);
 
-  private final String digestAlg = "SM3";
+//  private final String digestAlg = "SM3";
   private final boolean buffer;
   private UnsyncByteArrayOutputStream bos;
-  private final GmSSL gmssl;
+  // private final GmSSL gmssl;
+  private final IPPJNI ipp;
 
   // 替换原有MessageDigest的update, 直接做GmSSL的digest
   private byte[] update;
@@ -48,8 +49,8 @@ public class DigesterOutputStream_GmSSL extends OutputStream {
    *
    * @param md the MessageDigest
    */
-  public DigesterOutputStream_GmSSL(GmSSL gmssl) {
-    this(gmssl, false);
+  public DigesterOutputStream_GmSSL(IPPJNI ipp) {
+    this(ipp, false);
   }
 
   /**
@@ -58,14 +59,15 @@ public class DigesterOutputStream_GmSSL extends OutputStream {
    * @param md the MessageDigest
    * @param buffer if true, caches the input bytes
    */
-  public DigesterOutputStream_GmSSL(GmSSL gmssl, boolean buffer) {
-    this.gmssl = gmssl;
+  public DigesterOutputStream_GmSSL(IPPJNI ipp, boolean buffer) {
+    this.ipp = ipp;
     this.buffer = buffer;
     if (buffer) {
       bos = new UnsyncByteArrayOutputStream();
     }
   }
 
+  @Override
   public void write(int input) {
     if (buffer) {
       bos.write(input);
@@ -95,8 +97,8 @@ public class DigesterOutputStream_GmSSL extends OutputStream {
   /**
    * @return the digest value
    */
-  public synchronized byte[] getDigestValue() {
-    return gmssl.digest(digestAlg, update);
+  public byte[] getDigestValue() {
+    return ipp.sm3(update);
   }
 
   /**

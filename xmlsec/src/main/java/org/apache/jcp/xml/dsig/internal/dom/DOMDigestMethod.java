@@ -113,7 +113,7 @@ public abstract class DOMDigestMethod extends BaseStructure implements DigestMet
 		} else if (alg.equals(SM3)) {
 			return new SM3(dmElem);
 		} else if (alg.equals(SM3_GmSSL)) {
-          return new SM3_SSL(dmElem);
+            return new SM3_SSL(dmElem);
         } else {
 			throw new MarshalException("unsupported DigestMethod algorithm: " + alg);
 		}

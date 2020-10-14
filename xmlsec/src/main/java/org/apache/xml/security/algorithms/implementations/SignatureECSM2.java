@@ -56,6 +56,7 @@ public abstract class SignatureECSM2 extends SignatureAlgorithmSpi {
     }
   }
 
+  @Override
   protected void engineSetParameter(AlgorithmParameterSpec params)
       throws XMLSignatureException {
       try {
@@ -65,6 +66,7 @@ public abstract class SignatureECSM2 extends SignatureAlgorithmSpi {
       }
   }
 
+  @Override
   protected boolean engineVerify(byte[] signature) throws XMLSignatureException {
       try {
           byte[] jcebytes = SignatureECDSA.convertXMLDSIGtoASN1(signature);
@@ -81,6 +83,7 @@ public abstract class SignatureECSM2 extends SignatureAlgorithmSpi {
       }
   }
 
+  @Override
   protected void engineInitVerify(Key publicKey) throws XMLSignatureException {
 
       if (!(publicKey instanceof PublicKey)) {
@@ -112,6 +115,7 @@ public abstract class SignatureECSM2 extends SignatureAlgorithmSpi {
       }
   }
 
+  @Override
   protected byte[] engineSign() throws XMLSignatureException {
       try {
           byte jcebytes[] = this.signatureAlgorithm.sign();
