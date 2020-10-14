@@ -504,7 +504,7 @@
 		<xerces.version>2.11.0</xerces.version>
 		<junit.version>4.12</junit.version>
 		<log4j.version>1.2.17</log4j.version>
-		<bcprov.version>0.4</bcprov.version>
+		<bcprov.version>1.60</bcprov.version>
 		<xmlunit.version>1.6</xmlunit.version>
 		<commons.codec.version>1.11</commons.codec.version>
 		<woodstox.core.version>5.0.3</woodstox.core.version>
@@ -595,8 +595,8 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
-			<groupId>cn.com.infosec</groupId>
-			<artifactId>bcprov</artifactId>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcprov-jdk15on</artifactId>
 			<version>${bcprov.version}</version>
 		</dependency>
 	</dependencies>
