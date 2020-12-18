@@ -336,9 +336,9 @@ public final class DOMXMLSignatureFactory extends XMLSignatureFactory {
             return new DOMSignatureMethod.RIPEMD160withECDSA(params);
         } else if (algorithm.equals(DOMHMACSignatureMethod.HMAC_SM3)) { //HMAC-SM3
             return new DOMHMACSignatureMethod.SM3(params);
-        } else if (algorithm.equals(DOMSignatureMethod.ECSM2_SM3)) { //ECSM2-SM3
+        } else if (algorithm.equals(DOMSignatureMethod.SM2_SM3)) { //ECSM2-SM3
             return new DOMSignatureMethod.SM3withECSM2(params);
-        } else if (algorithm.equals(DOMSignatureMethod.ECSM2_SM3_GmSSL)) { //ECSM2-SM3
+        } else if (algorithm.equals(DOMSignatureMethod.SM2_SM3_GMSSL)) { //ECSM2-SM3
           return new DOMSignatureMethod.SM3withECSM2_GmSSL(params);
         } else {
             throw new NoSuchAlgorithmException("unsupported algorithm");

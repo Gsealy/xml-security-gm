@@ -50,6 +50,7 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _ECKeyValue_QNAME = new QName("http://www.w3.org/2009/xmldsig11#", "ECKeyValue");
+    private final static QName _SM2KeyValue_QNAME = new QName("http://www.w3.org/2009/xmldsig11#", "SM2KeyValue");
     private final static QName _Prime_QNAME = new QName("http://www.w3.org/2009/xmldsig11#", "Prime");
     private final static QName _GnB_QNAME = new QName("http://www.w3.org/2009/xmldsig11#", "GnB");
     private final static QName _TnB_QNAME = new QName("http://www.w3.org/2009/xmldsig11#", "TnB");
@@ -72,6 +73,13 @@ public class ObjectFactory {
      */
     public ECKeyValueType createECKeyValueType() {
         return new ECKeyValueType();
+    }
+
+    /**
+     * Create an instance of {@link SM2KeyValueType}
+     */
+    public SM2KeyValueType createSM2KeyValueType() {
+        return new SM2KeyValueType();
     }
 
     /**
@@ -178,6 +186,12 @@ public class ObjectFactory {
     public JAXBElement<ECKeyValueType> createECKeyValue(ECKeyValueType value) {
         return new JAXBElement<ECKeyValueType>(_ECKeyValue_QNAME, ECKeyValueType.class, null, value);
     }
+
+    @XmlElementDecl(namespace = "http://www.w3.org/2009/xmldsig11#", name = "SM2KeyValue")
+    public JAXBElement<SM2KeyValueType> createECKeyValue(SM2KeyValueType value) {
+        return new JAXBElement<SM2KeyValueType>(_SM2KeyValue_QNAME, SM2KeyValueType.class, null, value);
+    }
+
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link PrimeFieldParamsType }{@code >}}

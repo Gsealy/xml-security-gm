@@ -30,6 +30,7 @@ import javax.xml.crypto.MarshalException;
 import javax.xml.crypto.dsig.DigestMethod;
 import javax.xml.crypto.dsig.XMLSignature;
 import javax.xml.crypto.dsig.spec.DigestMethodParameterSpec;
+import org.apache.xml.security.utils.Constants;
 import org.w3c.dom.Element;
 
 /**
@@ -45,8 +46,8 @@ public abstract class DOMDigestMethod extends BaseStructure implements DigestMet
 	static final String SHA3_256 = "http://www.w3.org/2007/05/xmldsig-more#sha3-256"; // see RFC 6931
 	static final String SHA3_384 = "http://www.w3.org/2007/05/xmldsig-more#sha3-384"; // see RFC 6931
 	static final String SHA3_512 = "http://www.w3.org/2007/05/xmldsig-more#sha3-512"; // see RFC 6931
-	static final String SM3 = "http://www.w3.org/2018/02/xmlgmdsig#sm3";
-	static final String SM3_GmSSL = "http://www.w3.org/2018/02/xmlgmdsig#sm3_ssl";
+	static final String SM3 = Constants.GMAlgorithmsSpecNS + "sm3";
+	static final String SM3_GmSSL = Constants.GMAlgorithmsSpecNS  + "sm3_ssl";
 
 	private DigestMethodParameterSpec params;
 

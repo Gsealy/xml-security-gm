@@ -42,6 +42,7 @@ import org.apache.jcp.xml.dsig.internal.SignerOutputStream;
 import org.apache.jcp.xml.dsig.internal.SignerOutputStream_GmSSL;
 import org.apache.xml.security.algorithms.implementations.SignatureECDSA;
 import org.apache.xml.security.algorithms.implementations.SignatureECSM2;
+import org.apache.xml.security.utils.Constants;
 import org.apache.xml.security.utils.JavaUtils;
 import org.w3c.dom.Element;
 import cn.com.infosec.ipp.IPPJNI;
@@ -85,9 +86,10 @@ public abstract class DOMSignatureMethod extends AbstractDOMSignatureMethod {
   static final String RSA_RIPEMD160_MGF1 =
       "http://www.w3.org/2007/05/xmldsig-more#ripemd160-rsa-MGF1";
 
-  static final String ECSM2_SM3 = "http://www.w3.org/2018/02/xmlgmdsig#ecsm2-sm3";
+  static final String SM2_SM3 = Constants.GMAlgorithmsSpecNS + "sm2-sm3";
 
-  static final String ECSM2_SM3_GmSSL = "http://www.w3.org/2018/02/xmlgmdsig#sslsm2-sm3";
+  @Deprecated
+  static final String SM2_SM3_GMSSL = "http://www.w3.org/2018/02/xmlgmdsig#sslsm2-sm3";
 
   /**
    * Creates a <code>DOMSignatureMethod</code>.
@@ -180,9 +182,9 @@ public abstract class DOMSignatureMethod extends AbstractDOMSignatureMethod {
       return new DOMHMACSignatureMethod.RIPEMD160(smElem);
     } else if (alg.equals(DOMHMACSignatureMethod.HMAC_SM3)) { // HMAC-SM3
       return new DOMHMACSignatureMethod.SM3(smElem);
-    } else if (alg.equals(ECSM2_SM3)) {
+    } else if (alg.equals(SM2_SM3)) {
       return new SM3withECSM2(smElem);
-    } else if (alg.equals(ECSM2_SM3_GmSSL)) {
+    } else if (alg.equals(SM2_SM3_GMSSL)) {
       return new SM3withECSM2_GmSSL(smElem);
     } else {
       throw new MarshalException("unsupported SignatureMethod algorithm: " + alg);
@@ -822,7 +824,7 @@ public abstract class DOMSignatureMethod extends AbstractDOMSignatureMethod {
 
     @Override
     public String getAlgorithm() {
-      return ECSM2_SM3;
+      return SM2_SM3;
     }
 
     @Override
@@ -847,7 +849,7 @@ public abstract class DOMSignatureMethod extends AbstractDOMSignatureMethod {
 
     @Override
     public String getAlgorithm() {
-      return ECSM2_SM3_GmSSL;
+      return SM2_SM3_GMSSL;
     }
 
     @Override

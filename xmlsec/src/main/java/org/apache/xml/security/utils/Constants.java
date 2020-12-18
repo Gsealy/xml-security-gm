@@ -266,8 +266,8 @@ public final class Constants {
     
     /**GM - GMURI */
     public static final String GMAlgorithmsSpecNS =
-    		"http://www.w3.org/2018/02/xmlgmdsig#";
-    
+    		"http://127.0.0.1/2001/04/xmldsig-more#";
+
     private Constants() {
         // we don't allow instantiation
     }

@@ -68,9 +68,6 @@ public abstract class DOMKeyValue<K extends PublicKey> extends BaseStructure imp
     private static final String XMLGMDSIG_XMLNS
     	= "http://www.w3.org/2018/xmlgmdsig#";
     private final K publicKey;
-    
-    // 添加GM URI判断，主要是对EC而言。
-    private static boolean isGMURI = false;
 
     public DOMKeyValue(K key) throws KeyException {
         if (key == null) {
@@ -101,9 +98,7 @@ public abstract class DOMKeyValue<K extends PublicKey> extends BaseStructure imp
             return new RSA(kvtElem);
         } else if (kvtElem.getLocalName().equals("ECKeyValue") && XMLDSIG_11_XMLNS.equals(namespace)) {
             return new EC(kvtElem);
-        } else if (kvtElem.getLocalName().equals("ECKeyValue") && XMLGMDSIG_XMLNS.equals(namespace)) {
-        	// 识别 GM NameSpace 
-        	isGMURI = true;
+        } else if (kvtElem.getLocalName().equals("SM2KeyValue") && XMLDSIG_11_XMLNS.equals(namespace)) {
         	return new EC(kvtElem);
         }
         else {
@@ -493,17 +488,18 @@ public abstract class DOMKeyValue<K extends PublicKey> extends BaseStructure imp
                 XMLCryptoContext context)
             throws MarshalException
         {
-        	// 默认URI为XMLdsig11
-        	String nsURI = XMLDSIG_11_XMLNS;
-        	if(isGMURI) {
-        		nsURI = XMLGMDSIG_XMLNS;
-        	}
-            String prefix = DOMUtils.getNSPrefix(context, nsURI);
-            xwriter.writeStartElement(prefix, "ECKeyValue", nsURI);
+        	  String nsURI = XMLDSIG_11_XMLNS;
+        	  String prefix = DOMUtils.getNSPrefix(context, nsURI);
+            // 判断选择 SM2KeyValue
+            String oid = getCurveOid(ecParams);
+            if ("1.2.156.10197.1.301".equals(oid)) {
+                xwriter.writeStartElement(prefix, "SM2KeyValue", nsURI);
+            } else {
+                xwriter.writeStartElement(prefix, "ECKeyValue", nsURI);
+            }
 
             xwriter.writeStartElement(prefix, "NamedCurve", nsURI);
             xwriter.writeNamespace(prefix, nsURI);
-            String oid = getCurveOid(ecParams);
             if (oid == null) {
                 throw new MarshalException("Invalid ECParameterSpec");
             }
@@ -557,27 +553,10 @@ public abstract class DOMKeyValue<K extends PublicKey> extends BaseStructure imp
                 } else {
                     throw new MarshalException("Invalid NamedCurve URI");
                 }
-            } else if (curElem.getLocalName().equals("NamedCurve")
-                    && XMLGMDSIG_XMLNS.equals(curElem.getNamespaceURI())) {
-                    String uri = DOMUtils.getAttributeValue(curElem, "URI");
-                    // strip off "urn:oid"
-                    if (uri.startsWith("urn:oid:")) {
-                        String oid = uri.substring("urn:oid:".length());
-                        ecParams = getECParameterSpec(oid);
-                        if (ecParams == null) {
-                            throw new MarshalException("Invalid curve OID");
-                        }
-                    } else {
-                        throw new MarshalException("Invalid NamedCurve URI");
-                    }
-                } else {
+            } else {
                 throw new MarshalException("Invalid ECKeyValue");
             }
-            if(isGMURI) {
-            	curElem = DOMUtils.getNextSiblingElement(curElem, "PublicKey", XMLGMDSIG_XMLNS);
-            } else {
-            	curElem = DOMUtils.getNextSiblingElement(curElem, "PublicKey", XMLDSIG_11_XMLNS);
-            }
+            curElem = DOMUtils.getNextSiblingElement(curElem, "PublicKey", XMLDSIG_11_XMLNS);
             ECPoint ecPoint = null;
 
             try {

@@ -172,7 +172,7 @@ public final class XMLSignature extends SignatureElementProxy {
     /** HMAC - Optional HMAC-SHA512 */
     public static final String ALGO_ID_MAC_HMAC_SHA512 =
         Constants.MoreAlgorithmsSpecNS + "hmac-sha512";
-    
+
     /** HMAC - Optional HMAC-SM3 */
     public static final String ALGO_ID_MAC_HMAC_SM3 =
         Constants.GMAlgorithmsSpecNS + "hmac-sm3";
@@ -200,14 +200,14 @@ public final class XMLSignature extends SignatureElementProxy {
     /**Signature - Optional ECDSAwithRIPEMD160 */
     public static final String ALGO_ID_SIGNATURE_ECDSA_RIPEMD160 =
         "http://www.w3.org/2007/05/xmldsig-more#ecdsa-ripemd160";
-    
+
     /**Signature - Optional ECSM2withSM3 */
     public static final String ALGO_ID_SIGNATURE_ECSM2_SM3 =
-        "http://www.w3.org/2018/02/xmlgmdsig#ecsm2-sm3";
-    
+        Constants.GMAlgorithmsSpecNS + "sm2-sm3";
+
     /**Signature - Optional ECSM2withSM3 */
     public static final String ALGO_ID_SIGNATURE_ECSM2_SM3_GMSSL =
-        "http://www.w3.org/2018/02/xmlgmdsig#sslsm2-sm3";
+        Constants.GMAlgorithmsSpecNS + "sslsm2-sm3";
 
     private static final org.slf4j.Logger LOG =
         org.slf4j.LoggerFactory.getLogger(XMLSignature.class);
