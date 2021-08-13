@@ -89,6 +89,8 @@ public abstract class DOMSignatureMethod extends AbstractDOMSignatureMethod {
     static final String RSA_RIPEMD160_MGF1 =
         "http://www.w3.org/2007/05/xmldsig-more#ripemd160-rsa-MGF1";
 
+    static final String SM2_SM3 = "http://127.0.0.1/2001/04/xmldsig-more#sm2-sm3";
+
     /**
      * Creates a <code>DOMSignatureMethod</code>.
      *
@@ -171,7 +173,9 @@ public abstract class DOMSignatureMethod extends AbstractDOMSignatureMethod {
             return new SHA512withECDSA(smElem);
         } else if (alg.equals(ECDSA_RIPEMD160)) {
             return new RIPEMD160withECDSA(smElem);
-        } else if (alg.equals(SignatureMethod.HMAC_SHA1)) {
+        } else if (alg.equals(SM2_SM3)) {
+            return new SM3withSM2(smElem);
+        }  else if (alg.equals(SignatureMethod.HMAC_SHA1)) {
             return new DOMHMACSignatureMethod.SHA1(smElem);
         } else if (alg.equals(DOMHMACSignatureMethod.HMAC_SHA224)) {
             return new DOMHMACSignatureMethod.SHA224(smElem);
@@ -183,6 +187,8 @@ public abstract class DOMSignatureMethod extends AbstractDOMSignatureMethod {
             return new DOMHMACSignatureMethod.SHA512(smElem);
         } else if (alg.equals(DOMHMACSignatureMethod.HMAC_RIPEMD160)) {
             return new DOMHMACSignatureMethod.RIPEMD160(smElem);
+        }  else if (alg.equals(DOMHMACSignatureMethod.HMAC_SM3)) {
+            return new DOMHMACSignatureMethod.SM3(smElem);
         } else {
             throw new MarshalException
                 ("unsupported SignatureMethod algorithm: " + alg);
@@ -690,6 +696,31 @@ public abstract class DOMSignatureMethod extends AbstractDOMSignatureMethod {
         @Override
         Type getAlgorithmType() {
             return Type.ECDSA;
+        }
+    }
+
+    static final class SM3withSM2 extends DOMSignatureMethod {
+        SM3withSM2(AlgorithmParameterSpec params) throws InvalidAlgorithmParameterException {
+        super(params);
+        }
+
+        SM3withSM2(Element dmElem) throws MarshalException {
+        super(dmElem);
+        }
+
+        @Override
+        public String getAlgorithm() {
+        return SM2_SM3;
+        }
+
+        @Override
+        String getJCAAlgorithm() {
+        return "SM3WithSM2";
+        }
+
+        @Override
+        Type getAlgorithmType() {
+        return Type.SM2;
         }
     }
 

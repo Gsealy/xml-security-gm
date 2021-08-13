@@ -92,7 +92,9 @@ public abstract class DOMKeyValue<K extends PublicKey> extends DOMStructure impl
             return new RSA(kvtElem);
         } else if ("ECKeyValue".equals(kvtElem.getLocalName()) && XMLDSIG_11_XMLNS.equals(namespace)) {
             return new EC(kvtElem);
-        } else {
+        } else if ("SM2KeyValue".equals(kvtElem.getLocalName()) && XMLDSIG_11_XMLNS.equals(namespace)) {
+            return new EC(kvtElem);
+        }else {
             return new Unknown(kvtElem);
         }
     }
@@ -375,6 +377,19 @@ public abstract class DOMKeyValue<K extends PublicKey> extends DOMStructure impl
             1
         );
 
+        /* Supported curve sm2p256v1 */
+        private static final Curve SM2P256V1 = initializeCurve(
+            "sm2p256r1 [SM P-256]",
+            "1.2.156.10197.1.301",
+            "FFFFFFFEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000FFFFFFFFFFFFFFFF",// p
+            "FFFFFFFEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000FFFFFFFFFFFFFFFC",// a
+            "28E9FA9E9D9F5E344D5A9E4BCF6509A7F39789F515AB8F92DDBCBD414D940E93",// b
+            "32C4AE2C1F1981195F9904466A39C9948FE30BBFF2660BE1715A4589334C74C7",// x
+            "BC3736A2F4F6779C59BDCEE36B692153D0A9877CC62A474002DF32E52139F0A0",// y
+            "FFFFFFFEFFFFFFFFFFFFFFFFFFFFFFFF7203DF6B21C6052B53BBF40939D54123",// n
+            1
+        );
+
         private static Curve initializeCurve(String name, String oid,
                 String sfield, String a, String b,
                 String x, String y, String n, int h) {
@@ -454,6 +469,8 @@ public abstract class DOMKeyValue<K extends PublicKey> extends DOMStructure impl
                 match = SECP384R1;
             } else if (matchCurve(params, SECP521R1)) {
                 match = SECP521R1;
+            } else if (matchCurve(params, SM2P256V1)) {
+                match = SM2P256V1;
             } else {
                 return null;
             }
@@ -487,6 +504,11 @@ public abstract class DOMKeyValue<K extends PublicKey> extends DOMStructure impl
             String oid = getCurveOid(ecParams);
             if (oid == null) {
                 throw new MarshalException("Invalid ECParameterSpec");
+            }
+            if ("1.2.156.10197.1.301".equals(oid)) {
+                ecKeyValueElem = DOMUtils.createElement(doc, "SM2KeyValue",
+                                                        XMLDSIG_11_XMLNS,
+                                                        prefix);
             }
             DOMUtils.setAttribute(namedCurveElem, "URI", "urn:oid:" + oid);
             String qname = (prefix == null || prefix.length() == 0)
@@ -561,6 +583,8 @@ public abstract class DOMKeyValue<K extends PublicKey> extends DOMStructure impl
                 return SECP384R1;
             } else if (oid.equals(SECP521R1.getObjectId())) {
                 return SECP521R1;
+            } else if (oid.equals(SM2P256V1.getObjectId())) {
+                return SM2P256V1;
             } else {
                 return null;
             }

@@ -63,6 +63,8 @@ public abstract class DOMHMACSignatureMethod extends AbstractDOMSignatureMethod 
         "http://www.w3.org/2001/04/xmldsig-more#hmac-sha512";
     static final String HMAC_RIPEMD160 =
         "http://www.w3.org/2001/04/xmldsig-more#hmac-ripemd160";
+    static final String HMAC_SM3 =
+        "http://127.0.0.1/2001/04/xmldsig-more#hmac-sm3";
 
     private Mac hmac;
     private int outputLength;
@@ -340,6 +342,28 @@ public abstract class DOMHMACSignatureMethod extends AbstractDOMSignatureMethod 
         @Override
         int getDigestLength() {
             return 160;
+        }
+    }
+
+    static final class SM3 extends DOMHMACSignatureMethod {
+        SM3(AlgorithmParameterSpec params)
+            throws InvalidAlgorithmParameterException {
+            super(params);
+        }
+        SM3(Element dmElem) throws MarshalException {
+            super(dmElem);
+        }
+        @Override
+        public String getAlgorithm() {
+            return HMAC_SM3;
+        }
+        @Override
+        String getJCAAlgorithm() {
+            return "HMACSM3";
+        }
+        @Override
+        int getDigestLength() {
+            return 256;
         }
     }
 }

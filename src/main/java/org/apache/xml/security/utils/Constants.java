@@ -73,6 +73,9 @@ public final class Constants {
     /** The URI for XMLNS spec*/
     public static final String NamespaceSpecNS = "http://www.w3.org/2000/xmlns/";
 
+    /**GM - GMURI */
+    public static final String GMAlgorithmsSpecNS = "http://127.0.0.1/2001/04/xmldsig-more#";
+
     /** Tag of Attr Algorithm**/
     public static final String _ATT_ALGORITHM = "Algorithm";
 

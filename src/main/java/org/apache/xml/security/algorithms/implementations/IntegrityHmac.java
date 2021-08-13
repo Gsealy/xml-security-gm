@@ -574,6 +574,34 @@ public abstract class IntegrityHmac extends SignatureAlgorithmSpi {
         }
     }
 
+    /**
+     * Class IntegrityHmacSM3
+     */
+    public static class IntegrityHmacSM3 extends IntegrityHmac {
+
+        /**
+         * Constructor IntegrityHmacSM3
+         *
+         * @throws XMLSignatureException
+         */
+        public IntegrityHmacSM3() throws XMLSignatureException {
+            super();
+        }
+
+        /**
+         * Method engineGetURI
+         *
+         * {@inheritDoc}
+         */
+        public String engineGetURI() {
+            return XMLSignature.ALGO_ID_SIGNATURE_SM2_SM3;
+        }
+
+        int getDigestLength() {
+            return 256;
+        }
+    }
+
     private static class HMACOutputLength {
         private static final int MIN_LENGTH = 128;
         private static final int MAX_LENGTH = 2048;

@@ -28,6 +28,7 @@ import javax.xml.crypto.dsig.spec.DigestMethodParameterSpec;
 
 import java.security.InvalidAlgorithmParameterException;
 import java.security.spec.AlgorithmParameterSpec;
+import org.apache.xml.security.utils.Constants;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -53,6 +54,7 @@ public abstract class DOMDigestMethod extends DOMStructure
         "http://www.w3.org/2007/05/xmldsig-more#sha3-384"; // see RFC 6931
     static final String SHA3_512 =
         "http://www.w3.org/2007/05/xmldsig-more#sha3-512"; // see RFC 6931
+    static final String SM3 = Constants.GMAlgorithmsSpecNS + "sm3";
 
     private DigestMethodParameterSpec params;
 
@@ -117,6 +119,8 @@ public abstract class DOMDigestMethod extends DOMStructure
             return new SHA3_384(dmElem);
         } else if (alg.equals(SHA3_512)) {
             return new SHA3_512(dmElem);
+        } else if (alg.equals(SM3)) {
+            return new SM3(dmElem);
         } else {
             throw new MarshalException("unsupported DigestMethod algorithm: " +
                                        alg);
@@ -426,6 +430,26 @@ public abstract class DOMDigestMethod extends DOMStructure
         @Override
         String getMessageDigestAlgorithm() {
             return "SHA3-512";
+        }
+    }
+
+    static final class SM3 extends DOMDigestMethod {
+        SM3(AlgorithmParameterSpec params) throws InvalidAlgorithmParameterException {
+            super(params);
+        }
+
+        SM3(Element dmElem) throws MarshalException {
+            super(dmElem);
+        }
+
+        @Override
+        public String getAlgorithm() {
+            return SM3;
+        }
+
+        @Override
+        String getMessageDigestAlgorithm() {
+            return "SM3";
         }
     }
 }
