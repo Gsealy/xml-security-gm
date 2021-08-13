@@ -105,7 +105,6 @@ public class JCEMapper {
             MessageDigestAlgorithm.ALGO_ID_DIGEST_SHA3_512,
             new Algorithm("", "SHA3-512", "MessageDigest")
         );
-        //XXX SM3
         algorithmsMap.put(
                 MessageDigestAlgorithm.ALGO_ID_DIGEST_SM3,
                 new Algorithm("", "SM3", "MessageDigest")
@@ -210,7 +209,7 @@ public class JCEMapper {
         //XXX GM Sign
         algorithmsMap.put(
                 XMLSignature.ALGO_ID_SIGNATURE_ECSM2_SM3,
-                new Algorithm("EC", "SM3withECSM2", "Signature")
+                new Algorithm("EC", "SM3withSM2", "Signature")
             );
         algorithmsMap.put(
             XMLSignature.ALGO_ID_MAC_HMAC_NOT_RECOMMENDED_MD5,

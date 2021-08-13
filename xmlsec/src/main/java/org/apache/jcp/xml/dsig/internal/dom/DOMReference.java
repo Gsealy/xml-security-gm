@@ -4,9 +4,9 @@
  * copyright ownership. The ASF licenses this file to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance with the License. You may obtain a
  * copy of the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software distributed under the License
  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
  * or implied. See the License for the specific language governing permissions and limitations under
@@ -64,7 +64,6 @@ import javax.xml.crypto.dsig.XMLSignature;
 import javax.xml.crypto.dsig.XMLSignatureException;
 import javax.xml.crypto.dsig.XMLValidateContext;
 import org.apache.jcp.xml.dsig.internal.DigesterOutputStream;
-import org.apache.jcp.xml.dsig.internal.DigesterOutputStream_GmSSL;
 import org.apache.xml.security.algorithms.MessageDigestAlgorithm;
 import org.apache.xml.security.signature.XMLSignatureInput;
 import org.apache.xml.security.utils.UnsyncBufferedOutputStream;
@@ -72,7 +71,6 @@ import org.apache.xml.security.utils.XMLUtils;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
-import cn.com.infosec.ipp.IPPJNI;
 
 /**
  * DOM-based implementation of Reference.
@@ -116,10 +114,6 @@ public final class DOMReference extends DOMStructure implements Reference, DOMUR
   private InputStream dis;
   private MessageDigest md;
   private Provider provider;
-
-//  private GmSSL gmssl;
-
-  private IPPJNI ipp;
 
   /**
    * Creates a <code>Reference</code> from the specified parameters.
@@ -341,13 +335,8 @@ public final class DOMReference extends DOMStructure implements Reference, DOMUR
     } else {
       data = appliedTransformData;
     }
-    // 判断是否是GmSSL uri，是的话就是用GmSSL
-    // XXX 暂时是用gmssl替代原有国密签名算法
-    if (digestMethod.getAlgorithm().equals(DOMDigestMethod.SM3_GmSSL)) {
-      digestValue = transform_SSL(data, signContext);
-    } else {
-      digestValue = transform(data, signContext);
-    }
+
+    digestValue = transform(data, signContext);
 
     String encodedDV = Base64.getMimeEncoder().encodeToString(digestValue);
     LOG.debug("Reference object uri = {}", uri);
@@ -362,137 +351,6 @@ public final class DOMReference extends DOMStructure implements Reference, DOMUR
     LOG.debug("Reference digesting completed");
   }
 
-  /**
-   * SSL 专用transform
-   * 
-   * @param data
-   * @param signContext
-   * @return
-   */
-  private byte[] transform_SSL(Data dereferencedData, XMLCryptoContext context)
-      throws XMLSignatureException {
-//    if (gmssl == null) {
-//      gmssl = new GmSSL();
-//    }
-    if (ipp == null ) {
-      ipp = new IPPJNI();
-    }
-    DigesterOutputStream_GmSSL dos;
-    Boolean cache = (Boolean) context.getProperty("javax.xml.crypto.dsig.cacheReference");
-    if (cache != null && cache) {
-      this.derefData = copyDerefData(dereferencedData);
-      dos = new DigesterOutputStream_GmSSL(ipp, true);
-    } else {
-      dos = new DigesterOutputStream_GmSSL(ipp);
-    }
-    Data data = dereferencedData;
-    try (OutputStream os = new UnsyncBufferedOutputStream(dos)) {
-      for (int i = 0, size = transforms.size(); i < size; i++) {
-        DOMTransform transform = (DOMTransform) transforms.get(i);
-        if (i < size - 1) {
-          data = transform.transform(data, context);
-        } else {
-          data = transform.transform(data, context, os);
-        }
-      }
-
-      if (data != null) {
-        XMLSignatureInput xi;
-        // explicitly use C14N 1.1 when generating signature
-        // first check system property, then context property
-        boolean c14n11 = useC14N11;
-        String c14nalg = CanonicalizationMethod.INCLUSIVE;
-        if (context instanceof XMLSignContext) {
-          if (!c14n11) {
-            Boolean prop = (Boolean) context.getProperty("org.apache.xml.security.useC14N11");
-            c14n11 = prop != null && prop;
-            if (c14n11) {
-              c14nalg = "http://www.w3.org/2006/12/xml-c14n11";
-            }
-          } else {
-            c14nalg = "http://www.w3.org/2006/12/xml-c14n11";
-          }
-        }
-        if (data instanceof ApacheData) {
-          xi = ((ApacheData) data).getXMLSignatureInput();
-        } else if (data instanceof OctetStreamData) {
-          xi = new XMLSignatureInput(((OctetStreamData) data).getOctetStream());
-        } else if (data instanceof NodeSetData) {
-          TransformService spi = null;
-          if (provider == null) {
-            spi = TransformService.getInstance(c14nalg, "DOM");
-          } else {
-            try {
-              spi = TransformService.getInstance(c14nalg, "DOM", provider);
-            } catch (NoSuchAlgorithmException nsae) {
-              spi = TransformService.getInstance(c14nalg, "DOM");
-            }
-          }
-          data = spi.transform(data, context);
-          xi = new XMLSignatureInput(((OctetStreamData) data).getOctetStream());
-        } else {
-          throw new XMLSignatureException("unrecognized Data type");
-        }
-
-        boolean secVal = Utils.secureValidation(context);
-        xi.setSecureValidation(secVal);
-        if (context instanceof XMLSignContext && c14n11 && !xi.isOctetStream()
-            && !xi.isOutputStreamSet()) {
-          TransformService spi = null;
-          if (provider == null) {
-            spi = TransformService.getInstance(c14nalg, "DOM");
-          } else {
-            try {
-              spi = TransformService.getInstance(c14nalg, "DOM", provider);
-            } catch (NoSuchAlgorithmException nsae) {
-              spi = TransformService.getInstance(c14nalg, "DOM");
-            }
-          }
-
-          DOMTransform t = new DOMTransform(spi);
-          Element transformsElem = null;
-          String dsPrefix = DOMUtils.getSignaturePrefix(context);
-          if (allTransforms.isEmpty()) {
-            transformsElem = DOMUtils.createElement(refElem.getOwnerDocument(), "Transforms",
-                XMLSignature.XMLNS, dsPrefix);
-            refElem.insertBefore(transformsElem, DOMUtils.getFirstChildElement(refElem));
-          } else {
-            transformsElem = DOMUtils.getFirstChildElement(refElem);
-          }
-          XmlWriter xwriter = new XmlWriterToTree(Marshaller.getMarshallers(), transformsElem);
-          t.marshal(xwriter, dsPrefix, context);
-          allTransforms.add(t);
-          xi.updateOutputStream(os, true);
-        } else {
-          xi.updateOutputStream(os);
-        }
-      }
-      os.flush();
-      if (cache != null && cache) {
-        this.dis = dos.getInputStream();
-      }
-      return dos.getDigestValue();
-    } catch (NoSuchAlgorithmException e) {
-      throw new XMLSignatureException(e);
-    } catch (TransformException e) {
-      throw new XMLSignatureException(e);
-    } catch (MarshalException e) {
-      throw new XMLSignatureException(e);
-    } catch (IOException e) {
-      throw new XMLSignatureException(e);
-    } catch (org.apache.xml.security.c14n.CanonicalizationException e) {
-      throw new XMLSignatureException(e);
-    } finally {
-      if (dos != null) {
-        try {
-          dos.close();
-        } catch (IOException e) {
-          throw new XMLSignatureException(e);
-        }
-      }
-    }
-  }
-
   @Override
   public boolean validate(XMLValidateContext validateContext) throws XMLSignatureException {
     if (validateContext == null) {
@@ -502,11 +360,7 @@ public final class DOMReference extends DOMStructure implements Reference, DOMUR
       return validationStatus;
     }
     Data data = dereference(validateContext);
-    if (digestMethod.getAlgorithm().equals(DOMDigestMethod.SM3_GmSSL)) {
-      calcDigestValue = transform_SSL(data, validateContext);
-    } else {
-      calcDigestValue = transform(data, validateContext);
-    }
+    calcDigestValue = transform(data, validateContext);
     if (LOG.isDebugEnabled()) {
       LOG.debug("Expected digest: " + Base64.getMimeEncoder().encodeToString(digestValue));
       LOG.debug("Actual digest: " + Base64.getMimeEncoder().encodeToString(calcDigestValue));

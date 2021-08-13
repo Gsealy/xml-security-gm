@@ -113,9 +113,7 @@ public abstract class DOMDigestMethod extends BaseStructure implements DigestMet
 			return new SHA3_512(dmElem);
 		} else if (alg.equals(SM3)) {
 			return new SM3(dmElem);
-		} else if (alg.equals(SM3_GmSSL)) {
-            return new SM3_SSL(dmElem);
-        } else {
+		} else {
 			throw new MarshalException("unsupported DigestMethod algorithm: " + alg);
 		}
 	}
@@ -464,24 +462,4 @@ public abstract class DOMDigestMethod extends BaseStructure implements DigestMet
 			return "SM3";
 		}
 	}
-	
-	   static final class SM3_SSL extends DOMDigestMethod {
-	     SM3_SSL(AlgorithmParameterSpec params) throws InvalidAlgorithmParameterException {
-	            super(params);
-	        }
-
-	     SM3_SSL(Element dmElem) throws MarshalException {
-	            super(dmElem);
-	        }
-
-	        @Override
-	        public String getAlgorithm() {
-	            return SM3_GmSSL;
-	        }
-
-	        @Override
-	        String getMessageDigestAlgorithm() {
-	            return "SM3_SSL";
-	        }
-	    }
 }

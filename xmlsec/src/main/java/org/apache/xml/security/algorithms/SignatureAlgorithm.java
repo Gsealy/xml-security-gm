@@ -473,7 +473,7 @@ public class SignatureAlgorithm extends Algorithm {
         );
         algorithmHash.put(
                 XMLSignature.ALGO_ID_MAC_HMAC_SM3, IntegrityHmac.IntegrityHmacSM3.class
-            );
+        );
     }
 
     /**

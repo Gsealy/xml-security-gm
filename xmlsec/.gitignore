@@ -39,7 +39,5 @@ hs_err_pid*
 .classpath
 .project
 .gitignore.bak
-.pmd
-.pmdruleset.xml
 .idea
 *.iml
