@@ -26,7 +26,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import org.apache.xml.security.signature.XMLSignatureInput;
 import org.apache.xml.security.utils.ClassLoaderUtils;
 import org.apache.xml.security.utils.JavaUtils;
+import org.apache.xml.security.utils.resolver.implementations.ResolverDirectHTTP;
 import org.apache.xml.security.utils.resolver.implementations.ResolverFragment;
+import org.apache.xml.security.utils.resolver.implementations.ResolverLocalFilesystem;
 import org.apache.xml.security.utils.resolver.implementations.ResolverXPointer;
 
 /**
@@ -130,6 +132,8 @@ public class ResourceResolver {
         // Add a guard so that we don't repeatedly add the default resolvers
         if (defaultResolversAdded.compareAndSet(false, true)) {
             List<ResourceResolverSpi> resourceResolversToAdd = new ArrayList<>();
+            resourceResolversToAdd.add(new ResolverLocalFilesystem());
+            resourceResolversToAdd.add(new ResolverDirectHTTP());
             resourceResolversToAdd.add(new ResolverFragment());
             resourceResolversToAdd.add(new ResolverXPointer());
 
