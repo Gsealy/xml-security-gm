@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><PurchaseOrder xmlns="urn:example:po" Id="test">
+  <Items id="test2">
+    <Item Code="001-001-001" Quantity="1">
+      spade
+    </Item>
+    <Item Code="001-001-002" Quantity="1">
+      shovel
+    </Item>
+  </Items>
+  <ShippingAddress id="test3">
+    Dig PLC, 1 First Ave, Dublin 1, Ireland
+  </ShippingAddress>
+  <PaymentInfo>
+    <BillingAddress>
+      Dig PLC, 1 First Ave, Dublin 1, Ireland
+    </BillingAddress>
+    <CreditCard Type="Amex">
+      <Name>Foo B Baz</Name>
+      <Number>1234 567890 12345</Number>
+      <Expires Month="1" Year="2005"/>
+    </CreditCard>
+  </PaymentInfo>
+  <Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="Sig-D45F9EE16217BB060AC9DBCB95A7C83"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments"/><SignatureMethod Algorithm="http://127.0.0.1/2001/04/xmldsig-more#sm2-sm3"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://127.0.0.1/2001/04/xmldsig-more#sm3"/><DigestValue>z/vDz9rHerXEqMmM/aTYLfvkRVysqoR/E+0b0i0UhgU=</DigestValue></Reference></SignedInfo><SignatureValue>MEUCIQDNRMyTu70x6MygQHoypKFhOMxl35ZnGxva1OZQflg2rgIgapBx+8OTXO+ufqrGBjmSzLw5&#13;
+    dEtYGwOfyWRAt7GrX8g=</SignatureValue><KeyInfo><X509Data><X509SubjectName>CN=001@057SignSm2_20201022@PG,OU=NetSign,O=Infosec,C=cn</X509SubjectName><X509Certificate>MIID3jCCA4OgAwIBAgIGAXVQD4cYMAwGCCqBHM9VAYN1BQAwVjEjMCEGA1UEAwwaMDAxQDAwMlNt&#13;
+    MlJvb3RfMjAyMDEwMjJAUEcxEDAOBgNVBAsMB05ldFNpZ24xEDAOBgNVBAoMB0luZm9zZWMxCzAJ&#13;
+    BgNVBAYTAmNuMCAXDTIwMTAyMjExMjYyOFoYDzIwNzAxMDIzMTEyNjI4WjBWMSMwIQYDVQQDDBow&#13;
+    MDFAMDU3U2lnblNtMl8yMDIwMTAyMkBQRzEQMA4GA1UECwwHTmV0U2lnbjEQMA4GA1UECgwHSW5m&#13;
+    b3NlYzELMAkGA1UEBhMCY24wWTATBgcqhkjOPQIBBggqgRzPVQGCLQNCAAS+LwNzKJVNZL/StMVw&#13;
+    g6uFee9tBXLf0ipM2fAjFfDYq2iLenYE7wHmGRa6h0Q7iPt+0BV+ubL6cBGcJ645Vvz/o4ICNzCC&#13;
+    AjMwHwYDVR0OBBgEFgQUpKKkRYQrrFyq0w63R7HnbuKmq1MwbwYIKwYBBQUHAQEEYzBhMDEGCCsG&#13;
+    AQUFBzAChiVodHRwOi8vaWRfYWRfY2FJc3N1ZXJzLmluZm9zZWMuY29tLmNuMCwGCCsGAQUFBzAB&#13;
+    hiBodHRwOi8vaWRfYWRfb2NzcC5pbmZvc2VjLmNvbS5jbjAJBgNVHRMEAjAAMA8GA1UdEQQIMAaH&#13;
+    BH8AAAEwCwYDVR0PBAQDAgH+MBEGCWCGSAGG+EIBAQQEAwIFoDCB0wYDVR0lBIHLMIHIBggrBgEF&#13;
+    BQcDAAYIKwYBBQUHAwEGCCsGAQUFBwMCBggrBgEFBQcDAwYIKwYBBQUHAwQGCCsGAQUFBwMFBggr&#13;
+    BgEFBQcDBgYIKwYBBQUHAwcGCCsGAQUFBwMIBggrBgEFBQcDCQYIKwYBBQUHAwoGCCsGAQUFBwML&#13;
+    BggrBgEFBQcDDAYIKwYBBQUHAw0GCCsGAQUFBwMOBggrBgEFBQcDDwYIKwYBBQUHAxAGCCsGAQUF&#13;
+    BwMRBggrBgEFBQcDEgYIKwYBBQUHAxMwFgYIKwYBBQUHAQwEChYITG9nb1R5cGUwPwYDVR0eBDgw&#13;
+    NqAZMBekDzANMQswCQYDVQQDDAIxMYABAYEBA6EZMBekDzANMQswCQYDVQQDDAIxMoABAYEBAjAT&#13;
+    BgNVHTgEDBYKTm9SZXZBdmFpbDAfBgNVHSMEGDAWgBT1/m6ehZ0OiHwMOpeF/tHv0Ehm2DAMBggq&#13;
+    gRzPVQGDdQUAA0cAMEQCIIlRs64EvaNIuMOnGs8mcd2oKV/Xsd0Owa4gBsQqt4FaAiBbT9z1SgJs&#13;
+    cctZRGFUxXF3NyOn+qc+EYNhn4IHnWVS6A==</X509Certificate></X509Data></KeyInfo></Signature></PurchaseOrder>
