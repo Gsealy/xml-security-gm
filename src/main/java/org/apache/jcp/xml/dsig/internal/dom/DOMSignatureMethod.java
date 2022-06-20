@@ -43,6 +43,11 @@ public abstract class DOMSignatureMethod extends AbstractDOMSignatureMethod {
 
     private static final String DOM_SIGNATURE_PROVIDER = "org.jcp.xml.dsig.internal.dom.SignatureProvider";
 
+    /**
+     * support custom defined {@link AlgorithmParameterSpec} for {@link Signature}, spi need implement {@link Signature#setParameter(AlgorithmParameterSpec)}
+     */
+    public static final String DOM_SIGNATURE_SPEC = "org.apache.xml.security.algorithms.AlgorithmParameterSpec";
+
     private static final org.slf4j.Logger LOG =
         org.slf4j.LoggerFactory.getLogger(DOMSignatureMethod.class);
 
@@ -216,8 +221,15 @@ public abstract class DOMSignatureMethod extends AbstractDOMSignatureMethod {
                 signature = (p == null)
                     ? Signature.getInstance(getJCAAlgorithm())
                     : Signature.getInstance(getJCAAlgorithm(), p);
+
+                AlgorithmParameterSpec spec = (AlgorithmParameterSpec) context.getProperty(DOM_SIGNATURE_SPEC);
+                if (spec != null) {
+                    signature.setParameter(spec);
+                }
             } catch (NoSuchAlgorithmException nsae) {
                 throw new XMLSignatureException(nsae);
+            } catch (InvalidAlgorithmParameterException iape) {
+                throw new XMLSignatureException(iape);
             }
         }
         signature.initVerify((PublicKey)key);
@@ -260,8 +272,15 @@ public abstract class DOMSignatureMethod extends AbstractDOMSignatureMethod {
                 signature = (p == null)
                     ? Signature.getInstance(getJCAAlgorithm())
                     : Signature.getInstance(getJCAAlgorithm(), p);
+
+                AlgorithmParameterSpec spec = (AlgorithmParameterSpec) context.getProperty(DOM_SIGNATURE_SPEC);
+                if (spec != null) {
+                    signature.setParameter(spec);
+                }
             } catch (NoSuchAlgorithmException nsae) {
                 throw new XMLSignatureException(nsae);
+            } catch (InvalidAlgorithmParameterException iape) {
+                throw new XMLSignatureException(iape);
             }
         }
         signature.initSign((PrivateKey)key);
