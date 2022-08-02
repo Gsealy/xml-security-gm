@@ -32,7 +32,9 @@ import org.apache.xml.security.signature.XMLSignatureInput;
 import org.apache.xml.security.transforms.implementations.TransformBase64Decode;
 import org.apache.xml.security.transforms.implementations.TransformC14N;
 import org.apache.xml.security.transforms.implementations.TransformC14N11;
+import org.apache.xml.security.transforms.implementations.TransformC14N11_GM;
 import org.apache.xml.security.transforms.implementations.TransformC14N11_WithComments;
+import org.apache.xml.security.transforms.implementations.TransformC14N11_WithCommentsGM;
 import org.apache.xml.security.transforms.implementations.TransformC14NExclusive;
 import org.apache.xml.security.transforms.implementations.TransformC14NExclusiveWithComments;
 import org.apache.xml.security.transforms.implementations.TransformC14NWithComments;
@@ -271,6 +273,12 @@ public final class Transform extends SignatureElementProxy {
         );
         transformSpiHash.put(
             Transforms.TRANSFORM_XPATH2FILTER, new TransformXPath2Filter()
+        );
+        transformSpiHash.put(
+                Transforms.TRANSFORM_C14N11_OMIT_COMMENTS_GM, new TransformC14N11_GM()
+        );
+        transformSpiHash.put(
+                Transforms.TRANSFORM_C14N11_WITH_COMMENTS_GM, new TransformC14N11_WithCommentsGM()
         );
     }
 

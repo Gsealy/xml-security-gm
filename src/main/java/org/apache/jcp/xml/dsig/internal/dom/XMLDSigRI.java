@@ -108,6 +108,9 @@ public final class XMLDSigRI extends Provider {
                         return new DOMXPathTransform();
                     } else if (algo.equals(Transform.XSLT)) {
                         return new DOMXSLTTransform();
+                    } else if (DOMCanonicalXMLC14N11Method_GM.C14N_11_GM.equals(algo) ||
+                            DOMCanonicalXMLC14N11Method_GM.C14N_11_WITH_COMMENTS_GM.equals(algo)) {
+                        return new DOMCanonicalXMLC14N11Method_GM();
                     }
                 }
             } catch (Exception ex) {
@@ -201,6 +204,18 @@ public final class XMLDSigRI extends Provider {
                     Transform.XSLT,
                     "org.apache.jcp.xml.dsig.internal.dom.DOMXSLTTransform",
                     new String[] {"XSLT"}, MECH_TYPE));
+
+                // GM Inclusive C14N 1.1
+                putService(new ProviderService(p, "TransformService",
+                        "http://127.0.0.1/2006/12/xml-c14n11",
+                        "org.apache.jcp.xml.dsig.internal.dom.DOMCanonicalXMLC14N11Method_GM",
+                        null, MECH_TYPE));
+
+                // GM InclusiveWithComments C14N 1.1
+                putService(new ProviderService(p, "TransformService",
+                        "http://127.0.0.1/2006/12/xml-c14n11#WithComments",
+                        "org.apache.jcp.xml.dsig.internal.dom.DOMCanonicalXMLC14N11Method_GM",
+                        null, MECH_TYPE));
                 return null;
             }
         });

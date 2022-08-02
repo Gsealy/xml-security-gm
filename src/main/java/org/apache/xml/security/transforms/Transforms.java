@@ -96,6 +96,14 @@ public class Transforms extends SignatureElementProxy {
     public static final String TRANSFORM_XPATH2FILTER
         = "http://www.w3.org/2002/06/xmldsig-filter2";
 
+    /** Canonicalization - Required Canonical XML 1.1 (omits comments) */
+    public static final String TRANSFORM_C14N11_OMIT_COMMENTS_GM
+            = Canonicalizer.GM_ALGO_ID_C14N11_OMIT_COMMENTS;
+
+    /** Canonicalization - Recommended Canonical XML 1.1 with Comments */
+    public static final String TRANSFORM_C14N11_WITH_COMMENTS_GM
+            = Canonicalizer.GM_ALGO_ID_C14N11_WITH_COMMENTS;
+
     private static final org.slf4j.Logger LOG =
         org.slf4j.LoggerFactory.getLogger(Transforms.class);
 

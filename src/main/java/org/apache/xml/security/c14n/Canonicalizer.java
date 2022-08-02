@@ -25,7 +25,9 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.xml.security.c14n.implementations.Canonicalizer11_OmitComments;
+import org.apache.xml.security.c14n.implementations.Canonicalizer11_OmitCommentsGM;
 import org.apache.xml.security.c14n.implementations.Canonicalizer11_WithComments;
+import org.apache.xml.security.c14n.implementations.Canonicalizer11_WithCommentsGM;
 import org.apache.xml.security.c14n.implementations.Canonicalizer20010315ExclOmitComments;
 import org.apache.xml.security.c14n.implementations.Canonicalizer20010315ExclWithComments;
 import org.apache.xml.security.c14n.implementations.Canonicalizer20010315OmitComments;
@@ -87,6 +89,12 @@ public final class Canonicalizer {
      */
     public static final String ALGO_ID_C14N_PHYSICAL =
         "http://santuario.apache.org/c14n/physical";
+
+    public static final String GM_ALGO_ID_C14N11_OMIT_COMMENTS =
+            "http://127.0.0.1/2006/12/xml-c14n11";
+
+    public static final String GM_ALGO_ID_C14N11_WITH_COMMENTS =
+            GM_ALGO_ID_C14N11_OMIT_COMMENTS + "#WithComments";
 
     private static Map<String, Class<? extends CanonicalizerSpi>> canonicalizerHash =
         new ConcurrentHashMap<>();
@@ -207,6 +215,14 @@ public final class Canonicalizer {
         canonicalizerHash.put(
             Canonicalizer.ALGO_ID_C14N_PHYSICAL,
             CanonicalizerPhysical.class
+        );
+        canonicalizerHash.put(
+            Canonicalizer.GM_ALGO_ID_C14N11_OMIT_COMMENTS,
+            Canonicalizer11_OmitCommentsGM.class
+        );
+        canonicalizerHash.put(
+            Canonicalizer.GM_ALGO_ID_C14N11_WITH_COMMENTS,
+            Canonicalizer11_WithCommentsGM.class
         );
     }
 
